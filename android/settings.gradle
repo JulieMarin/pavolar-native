@@ -1,0 +1,3 @@
+rootProject.name = 'pavolar_mobile_iOS'
+
+include ':app'
