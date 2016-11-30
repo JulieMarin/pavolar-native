@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-const CardSlat = ({ children }) => {
+const CardSlat = ({ children, style }) => {
   return (
-    <View style={container}>
+    <View style={[container, style]}>
       {children}
     </View>
   );

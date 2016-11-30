@@ -85,12 +85,12 @@ class FilterMenu extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingTop: 20,
-    paddingLeft: 40,
-    backgroundColor: 'rgba(255, 255, 255, 0.925)',
-    borderLeftWidth: 1.5,
-    borderColor: 'rgb(240, 240, 240)',
+    // flex: 1,
+    // paddingTop: 20,
+    // paddingLeft: 40,
+    // backgroundColor: 'rgba(255, 255, 255, 0.925)',
+    // borderLeftWidth: 1.5,
+    // borderColor: 'rgb(240, 240, 240)',
   },
   row: {
     flexDirection: 'row',
@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   header: {
+    alignItems: 'center',
     borderBottomWidth: 1,
     borderColor: 'rgb(236, 236, 236)',
     paddingBottom: 8,

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { TextInput, StyleSheet } from 'react-native';
+import { TextInput, StyleSheet, Dimensions, View, TouchableOpacity, Text } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import DatePicker from 'react-native-datepicker';
+import CalendarPicker from 'react-native-calendar-picker';
 import CardContainer from './CardContainer';
+import Modal from 'react-native-modalbox'
 import CardSlat from './CardSlat';
 import Assets from '../images/Assets';
 import Icon from './Icon';
@@ -11,6 +14,7 @@ class DateSelection extends Component {
     super(props);
     this.maxDate();
     this.state = {
+      date: new Date(),
       departDate: '',
       returnDate: '',
     };
@@ -28,18 +32,9 @@ class DateSelection extends Component {
 
         <CardSlat>
           <Icon style={icon} source={Assets.departureDate} />
-          <DatePicker
-            date={this.state.departDate}
-            mode="date"
-            placeholder="DEPARTURE DATE"
-            showIcon={false}
-            format='MM/DD/YY'
-            minDate={new Date()}
-            maxDate={this.maxDate()}
-            confirmBtnText="Confirm"
-            cancelBtnText="Cancel"
-            onDateChange={(date) => { this.setState({ departDate: date }); }}
-          />
+          <TouchableOpacity onPress={() => Actions.dateModal({error: "Network failed...", hide: false})}>
+            <Text>MODAL TEST</Text>
+          </TouchableOpacity>
         </CardSlat>
 
         <CardSlat>

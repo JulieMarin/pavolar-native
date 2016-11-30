@@ -7,8 +7,8 @@ import {
   StyleSheet,
   Image,
   ScrollView,
+  Text
 } from 'react-native';
-import Assets from '../images/Assets';
 import backgroundAssets from '../images/BackgroundAssets';
 import Tab from './Tab';
 import LocationSelection from './LocationSelection';
