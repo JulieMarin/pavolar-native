@@ -108,19 +108,20 @@ const RouterComponent = () => {
           rightButtonTextStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
           onRight={() => Actions.confirmation()}
         />
+        <Scene
+          direction={'vertical'}
+          backTitle={'Close'}
+          navigationBarStyle={styles.headerBlue}
+          sceneStyle={styles.container}
+          key='confirmation'
+          title={'Confirmation'}
+          component={Confirmation}
+          titleStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
+          backButtonTextStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
+          hideBackImage={true}
+          rightButtonStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
+        />
       </Scene>
-      <Scene
-        backTitle={'Close'}
-        navigationBarStyle={styles.headerBlue}
-        sceneStyle={styles.container}
-        key='confirmation'
-        title={'Confirmation'}
-        component={Confirmation}
-        titleStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
-        backButtonTextStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
-        hideBackImage={true}
-        rightButtonStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
-      />
     </Router>
   );
 };
