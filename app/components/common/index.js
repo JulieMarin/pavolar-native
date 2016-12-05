@@ -7,3 +7,4 @@ export * from './Spinner';
 export * from './RowLayout';
 export * from './ColumnLayout';
 export * from './RoundedButton';
+export * from './CustomButton';
