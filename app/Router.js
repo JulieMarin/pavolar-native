@@ -12,10 +12,18 @@ import BookingStepThree from './components/BookingStepThree';
 import BookingStepFour from './components/BookingStepFour';
 import BookingStepFive from './components/BookingStepFive';
 import Confirmation from './components/Confirmation';
+import SignInMenu from './components/SignInMenu';
 
-const RouterComponent = () => {
+const RouterComponent = (props) => {
   return (
     <Router navigationBarStyle={styles.header}>
+      <Scene
+        // sceneStyle={styles.container}
+        key='signIn'
+        component={SignInMenu}
+        hideNavBar={true}
+        initial
+      />
       <Scene key={'root'}>
         {/* MAIN PAGE */}
         <Scene
@@ -23,7 +31,7 @@ const RouterComponent = () => {
           key='mainPage'
           component={MainPage}
           title={Title}
-          initial
+          // initial
         />
         {/* SEARCH RESULTS */}
         <Scene

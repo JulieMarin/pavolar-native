@@ -32,7 +32,7 @@ class DateSelection extends Component {
 
         <CardSlat>
           <Icon style={icon} source={Assets.departureDate} />
-          <TouchableOpacity onPress={() => Actions.dateModal({error: "Network failed...", hide: false})}>
+          <TouchableOpacity onPress={() => console.log(this.props)}>
             <Text>MODAL TEST</Text>
           </TouchableOpacity>
         </CardSlat>

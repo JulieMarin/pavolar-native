@@ -4,16 +4,18 @@ import { View, StyleSheet, Text, StatusBar } from 'react-native';
 import Modal from 'react-native-modalbox';
 import Drawer from 'react-native-drawer';
 import MainPage from './components/MainPage';
-import Router from './Router';
+import RouterComponent from './Router';
 import DrawerMenu from './components/DrawerMenu';
 import FilterMenu from './components/FilterMenu';
+import DateModal from './components/DateModal';
 import Store from './Store';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      drawerContent: <View />
+      drawerContent: <View />,
+
     };
   }
 
@@ -31,6 +33,10 @@ class App extends Component {
     });
   }
 
+  toggleDateModal() {
+
+  }
+
   render() {
     return (
       <Drawer
@@ -43,13 +49,29 @@ class App extends Component {
         tapToClose={true}
       >
         <Provider store={Store}>
-            <Router />
+            <RouterComponent toggleDateModal={this.toggleDateModal.bind(this)} />
         </Provider>
-        <Modal style={styles.dateModal} isOpen={false} position={"top"} entry={'top'} animationDuration={600}>
-            <FilterMenu />
+
+        <Modal
+          style={styles.dateModal}
+          isOpen={false}
+          position={"center"}
+          entry={'bottom'}
+          animationDuration={400}
+          swipeToClose={true}
+          // backdropColor={'rgb(0, 133, 255)'}
+        >
+          <DateModal />
         </Modal>
-        <Modal style={styles.dateModal} isOpen={true} position={"top"} entry={'top'} animationDuration={600}>
-            <FilterMenu />
+
+        <Modal
+          style={styles.dateModal}
+          isOpen={false}
+          position={"top"}
+          entry={'top'}
+          animationDuration={600}
+        >
+          <FilterMenu />
         </Modal>
       </Drawer>
     );
@@ -64,6 +86,14 @@ const styles = StyleSheet.create({
     marginRight: 18
   },
   dateModal: {
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    height: 350,
+    paddingTop: 30,
+    borderBottomWidth: 1.5,
+    borderColor: 'rgb(221, 221, 221)'
+  },
+  filterMenu: {
     alignItems: 'center',
     alignSelf: 'stretch',
     height: 300,

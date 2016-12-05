@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, ScrollView, StatusBar } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import FlightInfo from './FlightInfo';
 import BookingTravelHeader from './BookingTravelHeader';
@@ -15,6 +15,7 @@ class BookingStepThree extends Component {
   render() {
     return (
       <View style={styles.container}>
+      <StatusBar barStyle={'default'} />
       <ScrollView style={{ flex: 1 }}>
         <View
           style={{

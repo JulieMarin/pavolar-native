@@ -1,44 +1,41 @@
 import React, { Component } from 'react';
-import { View, TouchableHighlight, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
+import CalendarPicker from 'react-native-calendar-picker';
 
 class DateModal extends Component {
   constructor(props) {
-    super(props)
-    // set state with passed in props
+    super(props);
     this.state = {
-      message: props.error,
-      hide: props.hide,
-    }
-    // bind functions
-    this.dismissModal = this.dismissModal.bind(this)
+      date: new Date(),
+    };
   }
 
-  dismissModal() {
-    this.setState({hide: true})
+  maxDate() {
+    const currentDate = new Date();
+    currentDate.setMonth(currentDate.getMonth() + 6);
+    return currentDate;
   }
 
-  // show or hide Modal based on 'hide' prop
   render() {
-    if(this.state.hide){
-      return (
-        <View>
-        </View>
-      )
-    } else {
-      return (
-        <View style={styles.container}>
-          <TouchableHighlight onPress={this.dismissModal}>
-            <Text>{this.state.message}</Text>
-          </TouchableHighlight>
-        </View>
-      )
-    }
+    return (
+    <View>
+      <CalendarPicker
+        selectedDate={this.state.date}
+        onDateChange={() => null}
+        screenWidth={Dimensions.get('window').width}
+        selectedBackgroundColor={'#5ce600'}
+        selectedDayColor={'#8dc4fe'}
+        minDate={this.state.date}
+        maxDate={this.maxDate()}
+      />
+    </View>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: 500
+
   }
 });
 

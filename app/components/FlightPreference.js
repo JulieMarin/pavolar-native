@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
   },
   container: {
     alignItems: 'center',
-    marginLeft: 20,
   }
 });
 
