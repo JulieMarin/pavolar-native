@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { RowLayout, ColumnLayout, CustomButton } from './common' ;
 import Icon from './Icon';
 import CustomText from './CustomText';
 import FormInput from './FormInput';
-import axios from 'axios';
-import CryptoJS from "crypto-js";
+import { AuthenticateUser } from '../services'
 
 class SignInMenu extends Component {
   constructor(props) {
@@ -19,9 +18,9 @@ class SignInMenu extends Component {
     const params = {
       // adults: 1,
       appID: 'NGUZ1NKZ69593J3L5AEXY30EEE07TXOBA5EXS93J',
-      username: 'ali@alimze.com',
+      emailAddress: 'ali@alihamze.com',
       nonce: '98093123495451',
-      password: 'Rt-K9[*"Ekjsv#=H',
+      password: 'test'
       // children: 0,
       // departCode1: 'NYC',
       // departCode2: 'SAL',
@@ -33,29 +32,7 @@ class SignInMenu extends Component {
       // maxRecommendations: 2,
       // segments: 2,
     }
-
-    function customEncodeURIComponent(URI) {
-      return encodeURIComponent(URI).replace(/'/g, "%27");
-    }
-
-    const signature = [];
-    Object.keys(params).forEach(function(key) {
-      signature.push(key + '=' + customEncodeURIComponent(params[key]));
-    })
-
-    params.signature = btoa(CryptoJS.HmacSHA1(signature.join('&'), 'SZM5K3BNRNDRW4CSY3TQHFHKZN2R52IHLSQUP53O'));
-
-    btoa(CryptoJS.HmacSHA1(signature.join('&'), '2AQBS1JYX4'));
-
-    axios.get('https://api.pavolar.com/1/user/authenticate/account.json', {
-      params: params
-    })
-    .then(function (response) {
-     console.log(response);
-   })
-   .catch(function (error) {
-     console.log(error);
-   });
+    AuthenticateUser(params);
   }
 
   render() {
