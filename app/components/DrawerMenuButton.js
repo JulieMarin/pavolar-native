@@ -3,7 +3,7 @@ import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 
 const DrawerMenuButton = (props) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity onPress={() => props.handleEvent()} style={styles.container}>
       <View>
         <Text
           style={[styles.text, { fontWeight: props.fontWeight || '500' }]}

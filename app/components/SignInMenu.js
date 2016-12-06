@@ -5,19 +5,46 @@ import Icon from './Icon';
 import CustomText from './CustomText';
 import FormInput from './FormInput';
 import axios from 'axios';
+import CryptoJS from "crypto-js";
 
 class SignInMenu extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      signature: ''
+    }
+  }
+
   handleTouch() {
-    axios.get('https://api.pavolar.com/1/user/authenticate/account.json',{
-      params: {
-        username: 'ali@alihamze.com',
-        password: 'Rt-K9[*"Ekjsv#=H',
-        nonce: '',
-        signature: '',
-        appID: '',
-      }
+    const params = {
+      appID: 'AVNDXSV4J6',
+      nonce: '98093123495451',
+      adults: 1,
+      children: 0,
+      infants: 0,
+      maxRecommendations: 2,
+      segments: 2,
+      departCode1: 'NYC',
+      departDate1:' 08/01/2015',
+      destinationCode1: 'SAL',
+      departCode2: 'SAL',
+      departDate2: '08/05/2015',
+      destinationCode2: 'NYC,'
+    }
+    const signature = [];
+    Object.keys(params).forEach(function(key) {
+      signature.push(key + '=' + params[key]);
     })
-    .then((response) => console.log(response))
+    params.signature = btoa(CryptoJS.HmacSHA1(encodeURIComponent(signature.join('&')), "SZM5K3BNRNDRW4CSY3TQHFHKZN2R52IHLSQUP53O").toString());
+    axios.get('https://api.pavolar.com/1/user/authenticate/account.json', {
+      params: params
+    })
+    .then(function (response) {
+     console.log(response);
+   })
+   .catch(function (error) {
+     console.log(error);
+   });
   }
 
   render() {
@@ -48,9 +75,12 @@ class SignInMenu extends Component {
           <FormInput
             autoFocus={true}
             placeholder={'Email'}
+            defaultValue={'ali@alihamze.com'}
           />
           <FormInput
             placeholder={'Password'}
+            defaultValue={'Rt-K9[*"Ekjsv#=H'}
+            secureTextEntry={true}
           />
           <CustomButton
             text={'LOGIN'}

@@ -9,20 +9,22 @@ import DrawerMenu from './components/DrawerMenu';
 import FilterMenu from './components/FilterMenu';
 import DateModal from './components/DateModal';
 import Store from './Store';
+import SignInMenu from './components/SignInMenu';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      drawerOpen: false,
       drawerContent: <View />,
-
+      signInModalToggle: true
     };
   }
 
   openDrawer() {
     StatusBar.setHidden(true, 'slide');
     this.setState({
-      drawerContent: DrawerMenu()
+      drawerContent: <DrawerMenu handleEvent={this.toggleSignIn.bind(this)}/>
     });
   }
 
@@ -33,13 +35,17 @@ class App extends Component {
     });
   }
 
-  toggleDateModal() {
-
+  toggleSignIn() {
+    this.setState({
+      signInModalToggle: true,
+      drawerOpen: false
+    })
   }
 
   render() {
     return (
       <Drawer
+        open={this.state.drawerOpen}
         type="static"
         content={this.state.drawerContent}
         openDrawerOffset={75}
@@ -49,7 +55,7 @@ class App extends Component {
         tapToClose={true}
       >
         <Provider store={Store}>
-            <RouterComponent toggleDateModal={this.toggleDateModal.bind(this)} />
+            <RouterComponent />
         </Provider>
 
         <Modal
@@ -72,6 +78,15 @@ class App extends Component {
           animationDuration={600}
         >
           <FilterMenu />
+        </Modal>
+
+        <Modal
+          isOpen={this.state.signInModalToggle}
+          position={"center"}
+          entry={'bottom'}
+          animationDuration={400}
+        >
+          <SignInMenu />
         </Modal>
       </Drawer>
     );

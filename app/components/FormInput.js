@@ -7,9 +7,11 @@ const FormInput = (props) => {
       <TextInput
         autoFocus={props.autoFocus || null}
         style={[styles.text, props.textStyle]}
-        placeholder={ props.placeholder || 'First Name'}
+        placeholder={props.placeholder || 'First Name'}
         keyboardType={props.keyboardType || 'default'}
-        maxLength={ props.maxLength || null }
+        maxLength={props.maxLength || null}
+        defaultValue={props.defaultValue || null}
+        secureTextEntry={props.secureTextEntry || false}
       />
     </View>
   );
