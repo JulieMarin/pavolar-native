@@ -17,25 +17,36 @@ class SignInMenu extends Component {
 
   handleTouch() {
     const params = {
-      appID: 'AVNDXSV4J6',
+      // adults: 1,
+      appID: 'NGUZ1NKZ69593J3L5AEXY30EEE07TXOBA5EXS93J',
+      username: 'ali@alimze.com',
       nonce: '98093123495451',
-      adults: 1,
-      children: 0,
-      infants: 0,
-      maxRecommendations: 2,
-      segments: 2,
-      departCode1: 'NYC',
-      departDate1:' 08/01/2015',
-      destinationCode1: 'SAL',
-      departCode2: 'SAL',
-      departDate2: '08/05/2015',
-      destinationCode2: 'NYC,'
+      password: 'Rt-K9[*"Ekjsv#=H',
+      // children: 0,
+      // departCode1: 'NYC',
+      // departCode2: 'SAL',
+      // departDate1: '08/01/2017',
+      // departDate2: '08/05/2015',
+      // destinationCode1: 'SAL',
+      // destinationCode2: 'NYC',
+      // infants: 0,
+      // maxRecommendations: 2,
+      // segments: 2,
     }
+
+    function customEncodeURIComponent(URI) {
+      return encodeURIComponent(URI).replace(/'/g, "%27");
+    }
+
     const signature = [];
     Object.keys(params).forEach(function(key) {
-      signature.push(key + '=' + params[key]);
+      signature.push(key + '=' + customEncodeURIComponent(params[key]));
     })
-    params.signature = btoa(CryptoJS.HmacSHA1(encodeURIComponent(signature.join('&')), "SZM5K3BNRNDRW4CSY3TQHFHKZN2R52IHLSQUP53O").toString());
+
+    params.signature = btoa(CryptoJS.HmacSHA1(signature.join('&'), 'SZM5K3BNRNDRW4CSY3TQHFHKZN2R52IHLSQUP53O'));
+
+    btoa(CryptoJS.HmacSHA1(signature.join('&'), '2AQBS1JYX4'));
+
     axios.get('https://api.pavolar.com/1/user/authenticate/account.json', {
       params: params
     })
