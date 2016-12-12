@@ -1,8 +1,9 @@
-import { PavolarAPI, RequestPackager } from './';
+import { requestPackager } from './';
+import { PavolarAPI } from './modules';
 
-const AuthenticateUser = function(params){
-  const request = RequestPackager(params);
-  PavolarAPI.getAuthenticate(request);
+const authenticateUser = (params) => {
+  const request = requestPackager(params);
+  return PavolarAPI.getAuthenticate(request);
 }
 
-export { AuthenticateUser };
+export { authenticateUser };

@@ -6,12 +6,9 @@ class APIRouter {
   }
 
   getAuthenticate(params) {
-    axios.get( this.rootURI + '/1/user/authenticate/account.json', {
+    return axios.get( this.rootURI + '/1/user/authenticate/account.json', {
       params: params
     })
-    .then((response) => {
-     console.log(response);
-   })
   }
 
 }

@@ -12,6 +12,7 @@ const FormInput = (props) => {
         maxLength={props.maxLength || null}
         defaultValue={props.defaultValue || null}
         secureTextEntry={props.secureTextEntry || false}
+        onChangeText={(text) => props.eventHandler(text) || null}
       />
     </View>
   );

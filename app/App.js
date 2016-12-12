@@ -44,20 +44,18 @@ class App extends Component {
 
   render() {
     return (
-      <Drawer
-        open={this.state.drawerOpen}
-        type="static"
-        content={this.state.drawerContent}
-        openDrawerOffset={75}
-        tweenHandler={Drawer.tweenPresets.parallax}
-        onOpenStart={this.openDrawer.bind(this)}
-        onClose={this.closeDrawer.bind(this)}
-        tapToClose={true}
-      >
-        <Provider store={Store}>
-            <RouterComponent />
-        </Provider>
-
+      <Provider store={Store}>
+        <Drawer
+          open={this.state.drawerOpen}
+          type="static"
+          content={this.state.drawerContent}
+          openDrawerOffset={75}
+          tweenHandler={Drawer.tweenPresets.parallax}
+          onOpenStart={this.openDrawer.bind(this)}
+          onClose={this.closeDrawer.bind(this)}
+          tapToClose={true}
+        >
+          <RouterComponent />
         <Modal
           style={styles.dateModal}
           isOpen={false}
@@ -89,6 +87,7 @@ class App extends Component {
           <SignInMenu />
         </Modal>
       </Drawer>
+    </Provider>
     );
   }
 }
