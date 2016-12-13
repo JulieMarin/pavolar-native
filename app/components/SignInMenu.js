@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+  ActivityIndicator
+} from 'react-native';
 import { RowLayout, ColumnLayout, CustomButton } from './common' ;
 import Icon from './Icon';
 import CustomText from './CustomText';
@@ -30,6 +36,21 @@ class SignInMenu extends Component {
 
   handleTextChange(text) {
 
+  }
+
+  loginSpinner() {
+    if (this.props.loading) {
+      return (
+        <ActivityIndicator
+          animating={true}
+          size={'small'}
+          color={'#ffffff'}
+        />
+      )
+    }
+    return (
+      <CustomText size={18} color={'#ffffff'}>LOGIN</CustomText>
+    )
   }
 
   render() {
@@ -72,10 +93,13 @@ class SignInMenu extends Component {
             borderRadius={5}
             eventHandler={this.handleTouch.bind(this)}
           >
-            <CustomText size={18} color={'#ffffff'}>LOGIN</CustomText>
+            {this.loginSpinner()}
           </CustomButton>
           <CustomText size={14} color={'#3142d0'} style={styles.forgotPassword}>
             Forgot Password
+          </CustomText>
+          <CustomText size={14} color={'#e20000'} style={styles.forgotPassword}>
+            {this.props.statusMessage}
           </CustomText>
           <CustomButton
             text={'SIGN IN WITH FACEBOOK'}
@@ -108,8 +132,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ auth }) => {
-  const { email, password, error, loading, sessionID } = auth;
-  return { email, password, error, loading, sessionID };
+  const { email, password, statusMessage, loading, sessionID } = auth;
+  return { email, password, statusMessage, loading, sessionID };
 };
 
 export default connect(mapStateToProps, { loginUser, authUser })(SignInMenu);

@@ -13,6 +13,7 @@
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* pavolar_mobile_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* pavolar_mobile_iOSTests.m */; };
+		0E31B9E5FB304A8E8BE52AE8 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D13E4BBCAC1C4F9DBF9B377F /* FontAwesome.ttf */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -21,8 +22,19 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		28A59CB7A41743AC9EBF99D2 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D23DE99474049BF8A96B12E /* EvilIcons.ttf */; };
+		2C2CE02B09074590B34285A2 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 230CED8392504FAEAA88952A /* Entypo.ttf */; };
+		39E44EB55C2E42D2A9DCF2AD /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5BFAA4841D442D08989500B /* SimpleLineIcons.ttf */; };
+		43C1DFDA5536407991F673EC /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A8A4AE2500D8487A8AD09DED /* Ionicons.ttf */; };
+		61B597F223104460A0AD96AD /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F491D69C9D044CF28706A4E7 /* Foundation.ttf */; };
+		68BCD1000A5141C8800474CC /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F90B421B90E4F28A118779B /* Zocial.ttf */; };
+		779C41A6E9B44C34AEA4A3CB /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 51BA41C9CA7D483AA17A4575 /* MaterialIcons.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		9D8C909184B44FB7943FAFBB /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1A730099D147A08C0DB8E6 /* libRNVectorIcons.a */; };
+		AB00B1E7E9FF44F68DD4CDAC /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68CF9A2783BA4CDDA31A8994 /* libRNKeychain.a */; };
+		C23C30B7F9DC49E39A95EFA2 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E59DAF9367471C94EDB430 /* libRCTActionSheet.a */; };
 		E3F0EE041DE2647D0000582E /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3F0EE031DE2647D0000582E /* Media.xcassets */; };
+		FAA4BE9FADF2463FABFED00C /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF7A2B06A1284B019B146C93 /* Octicons.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +115,34 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		E3C3A61C1DFEF70C00C5BB61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D985FF395D94C72913A25A8 /* CalendarPicker2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 13B07F961A680F5B00A75B9A;
+			remoteInfo = CalendarPicker2;
+		};
+		E3C3A61E1DFEF70C00C5BB61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D985FF395D94C72913A25A8 /* CalendarPicker2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 00E356EE1AD99517003FC87E;
+			remoteInfo = CalendarPicker2Tests;
+		};
+		E3C3A62B1DFEF70C00C5BB61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF520CFE7E3E433E8B5778BE /* RNKeychain.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5D82366F1B0CE05B005A9EF3;
+			remoteInfo = RNKeychain;
+		};
+		E3C3A62E1DFEF70C00C5BB61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7C068036028C46ECB7204645 /* RNVectorIcons.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5DBEB1501B18CEA900B34395;
+			remoteInfo = RNVectorIcons;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +155,8 @@
 		00E356EE1AD99517003FC87E /* pavolar_mobile_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pavolar_mobile_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* pavolar_mobile_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pavolar_mobile_iOSTests.m; sourceTree = "<group>"; };
+		0D985FF395D94C72913A25A8 /* CalendarPicker2.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = CalendarPicker2.xcodeproj; path = "../node_modules/react-native-calendar-picker/ios/CalendarPicker2.xcodeproj"; sourceTree = "<group>"; };
+		0F90B421B90E4F28A118779B /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* pavolar_mobile_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pavolar_mobile_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,9 +166,23 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = pavolar_mobile_iOS/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = pavolar_mobile_iOS/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		230CED8392504FAEAA88952A /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		51BA41C9CA7D483AA17A4575 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		55E59DAF9367471C94EDB430 /* libRCTActionSheet.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTActionSheet.a; sourceTree = "<group>"; };
+		68CF9A2783BA4CDDA31A8994 /* libRNKeychain.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNKeychain.a; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		7C068036028C46ECB7204645 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
+		7D23DE99474049BF8A96B12E /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		A8A4AE2500D8487A8AD09DED /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		CF7A2B06A1284B019B146C93 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		D13E4BBCAC1C4F9DBF9B377F /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		E3C3A5FF1DFEF12400C5BB61 /* pavolar_mobile_IOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = pavolar_mobile_IOS.entitlements; path = pavolar_mobile_iOS/pavolar_mobile_IOS.entitlements; sourceTree = "<group>"; };
 		E3F0EE031DE2647D0000582E /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		E5BFAA4841D442D08989500B /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		F491D69C9D044CF28706A4E7 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		FC1A730099D147A08C0DB8E6 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
+		FF520CFE7E3E433E8B5778BE /* RNKeychain.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNKeychain.xcodeproj; path = "../node_modules/react-native-keychain/RNKeychain.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +208,9 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+				C23C30B7F9DC49E39A95EFA2 /* libRCTActionSheet.a in Frameworks */,
+				AB00B1E7E9FF44F68DD4CDAC /* libRNKeychain.a in Frameworks */,
+				9D8C909184B44FB7943FAFBB /* libRNVectorIcons.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +293,7 @@
 		13B07FAE1A68108700A75B9A /* pavolar_mobile_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				E3C3A5FF1DFEF12400C5BB61 /* pavolar_mobile_IOS.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				E3F0EE031DE2647D0000582E /* Media.xcassets */,
@@ -251,6 +311,22 @@
 				146834041AC3E56700842450 /* libReact.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		7162A13FD0A04E2F853DD832 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				230CED8392504FAEAA88952A /* Entypo.ttf */,
+				7D23DE99474049BF8A96B12E /* EvilIcons.ttf */,
+				D13E4BBCAC1C4F9DBF9B377F /* FontAwesome.ttf */,
+				F491D69C9D044CF28706A4E7 /* Foundation.ttf */,
+				A8A4AE2500D8487A8AD09DED /* Ionicons.ttf */,
+				51BA41C9CA7D483AA17A4575 /* MaterialIcons.ttf */,
+				CF7A2B06A1284B019B146C93 /* Octicons.ttf */,
+				E5BFAA4841D442D08989500B /* SimpleLineIcons.ttf */,
+				0F90B421B90E4F28A118779B /* Zocial.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
@@ -274,6 +350,9 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
+				0D985FF395D94C72913A25A8 /* CalendarPicker2.xcodeproj */,
+				FF520CFE7E3E433E8B5778BE /* RNKeychain.xcodeproj */,
+				7C068036028C46ECB7204645 /* RNVectorIcons.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -293,6 +372,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* pavolar_mobile_iOSTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				7162A13FD0A04E2F853DD832 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -303,6 +383,31 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* pavolar_mobile_IOS.app */,
 				00E356EE1AD99517003FC87E /* pavolar_mobile_iOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E3C3A6141DFEF70C00C5BB61 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E3C3A61D1DFEF70C00C5BB61 /* CalendarPicker2.app */,
+				E3C3A61F1DFEF70C00C5BB61 /* CalendarPicker2Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E3C3A6161DFEF70C00C5BB61 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E3C3A62C1DFEF70C00C5BB61 /* libRNKeychain.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E3C3A6181DFEF70C00C5BB61 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E3C3A62F1DFEF70C00C5BB61 /* libRNVectorIcons.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -352,7 +457,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 610;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -362,6 +467,11 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = Y335PFA6JJ;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -377,6 +487,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = E3C3A6141DFEF70C00C5BB61 /* Products */;
+					ProjectRef = 0D985FF395D94C72913A25A8 /* CalendarPicker2.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -416,6 +530,14 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = E3C3A6161DFEF70C00C5BB61 /* Products */;
+					ProjectRef = FF520CFE7E3E433E8B5778BE /* RNKeychain.xcodeproj */;
+				},
+				{
+					ProductGroup = E3C3A6181DFEF70C00C5BB61 /* Products */;
+					ProjectRef = 7C068036028C46ECB7204645 /* RNVectorIcons.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -497,6 +619,34 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		E3C3A61D1DFEF70C00C5BB61 /* CalendarPicker2.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CalendarPicker2.app;
+			remoteRef = E3C3A61C1DFEF70C00C5BB61 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E3C3A61F1DFEF70C00C5BB61 /* CalendarPicker2Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CalendarPicker2Tests.xctest;
+			remoteRef = E3C3A61E1DFEF70C00C5BB61 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E3C3A62C1DFEF70C00C5BB61 /* libRNKeychain.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNKeychain.a;
+			remoteRef = E3C3A62B1DFEF70C00C5BB61 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E3C3A62F1DFEF70C00C5BB61 /* libRNVectorIcons.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNVectorIcons.a;
+			remoteRef = E3C3A62E1DFEF70C00C5BB61 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -513,6 +663,15 @@
 			files = (
 				E3F0EE041DE2647D0000582E /* Media.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				2C2CE02B09074590B34285A2 /* Entypo.ttf in Resources */,
+				28A59CB7A41743AC9EBF99D2 /* EvilIcons.ttf in Resources */,
+				0E31B9E5FB304A8E8BE52AE8 /* FontAwesome.ttf in Resources */,
+				61B597F223104460A0AD96AD /* Foundation.ttf in Resources */,
+				43C1DFDA5536407991F673EC /* Ionicons.ttf in Resources */,
+				779C41A6E9B44C34AEA4A3CB /* MaterialIcons.ttf in Resources */,
+				FAA4BE9FADF2463FABFED00C /* Octicons.ttf in Resources */,
+				39E44EB55C2E42D2A9DCF2AD /* SimpleLineIcons.ttf in Resources */,
+				68BCD1000A5141C8800474CC /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +747,12 @@
 				INFOPLIST_FILE = pavolar_mobile_iOSTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pavolar_mobile_iOS.app/pavolar_mobile_iOS";
 			};
@@ -602,6 +767,12 @@
 				INFOPLIST_FILE = pavolar_mobile_iOSTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pavolar_mobile_iOS.app/pavolar_mobile_iOS";
 			};
@@ -612,6 +783,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = pavolar_mobile_iOS/pavolar_mobile_IOS.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = Y335PFA6JJ;
@@ -619,6 +791,9 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native-calendar-picker/ios/CalendarPicker2/**",
+					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
+					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 				);
 				INFOPLIST_FILE = pavolar_mobile_iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -638,12 +813,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = pavolar_mobile_iOS/pavolar_mobile_IOS.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y335PFA6JJ;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native-calendar-picker/ios/CalendarPicker2/**",
+					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
+					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 				);
 				INFOPLIST_FILE = pavolar_mobile_iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -696,6 +875,9 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native-calendar-picker/ios/CalendarPicker2/**",
+					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
+					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -736,6 +918,9 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native-calendar-picker/ios/CalendarPicker2/**",
+					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
+					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

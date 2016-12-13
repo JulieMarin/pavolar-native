@@ -12,6 +12,7 @@ import BookingStepThree from './components/BookingStepThree';
 import BookingStepFour from './components/BookingStepFour';
 import BookingStepFive from './components/BookingStepFive';
 import Confirmation from './components/Confirmation';
+import AutocompleteExample from './components/AutocompleteExample';
 
 const RouterComponent = (props) => {
   return (
@@ -21,7 +22,7 @@ const RouterComponent = (props) => {
         <Scene
           sceneStyle={styles.container}
           key='mainPage'
-          component={MainPage}
+          component={AutocompleteExample}
           title={Title}
           initial
         />
