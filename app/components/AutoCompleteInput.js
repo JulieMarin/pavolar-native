@@ -1,4 +1,6 @@
 import Autocomplete from 'react-native-autocomplete-input';
+import Overlay from 'react-native-overlay';
+import dismissKeyboard from 'dismissKeyboard';
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -8,10 +10,11 @@ import {
 } from 'react-native';
 import axios from 'axios';
 
-class AutocompleteExample extends Component {
+class AutoCompleteInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      picked: '',
       query: '',
       data: []
     }
@@ -19,7 +22,7 @@ class AutocompleteExample extends Component {
 
   handleTextChange(text) {
     this.setState({ query: text });
-    axios.get(`https://api.giphy.com/v1/gifs/search?q=${text}&api_key=dc6zaTOxFJmzC&limit=10`)
+    axios.get(`https://api.giphy.com/v1/gifs/search?q=${text}&api_key=dc6zaTOxFJmzC&limit=5`)
     .then((response) => {
       this.setState({
         query: text,
@@ -28,31 +31,34 @@ class AutocompleteExample extends Component {
     })
   }
 
+  selectSuggestion(slug) {
+    dismissKeyboard();
+    this.setState({ picked: slug })
+  }
+
   render() {
 
     return (
       <View style={styles.container}>
         <Autocomplete
+          style={styles.text}
           autoCapitalize="none"
           autoCorrect={false}
           containerStyle={styles.autocompleteContainer}
+          inputContainerStyle={styles.input}
           data={this.state.data}
-          defaultValue={this.state.query}
+          defaultValue={this.state.picked}
           onChangeText={(text) => this.handleTextChange(text)}
-          placeholder="Enter Star Wars film title"
+          placeholder="GOING TO"
+          listStyle={styles.results}
           renderItem={({ slug }) => (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => this.selectSuggestion(slug) }>
               <Text style={styles.itemText}>
                 {slug}
               </Text>
             </TouchableOpacity>
           )}
         />
-        <View style={styles.descriptionContainer}>
-          <Text style={styles.infoText}>
-            Enter Title of a Star Wars movie
-          </Text>
-        </View>
       </View>
     );
   }
@@ -60,43 +66,34 @@ class AutocompleteExample extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F5FCFF',
     flex: 1,
-    paddingTop: 25
+    alignSelf: 'stretch',
   },
   autocompleteContainer: {
-    marginLeft: 10,
-    marginRight: 10
+    marginLeft: 4,
+    marginRight: 4,
   },
   itemText: {
     fontSize: 15,
     margin: 2
   },
-  descriptionContainer: {
-    // `backgroundColor` needs to be set otherwise the
-    // autocomplete input will disappear on text input.
-    backgroundColor: '#F5FCFF',
-    marginTop: 8
+  results: {
+    paddingTop: 4,
+    paddingBottom: 4,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
   },
-  infoText: {
-    textAlign: 'center'
+  input: {
+    paddingLeft: 10,
+    paddingRight: 10,
+    // borderWidth: 0,
   },
-  titleText: {
-    fontSize: 18,
-    fontWeight: '500',
-    marginBottom: 10,
-    marginTop: 10,
-    textAlign: 'center'
-  },
-  directorText: {
-    color: 'grey',
-    fontSize: 12,
-    marginBottom: 10,
-    textAlign: 'center'
-  },
-  openingText: {
-    textAlign: 'center'
+  text: {
+    height: 35,
+    fontSize: 16
   }
 });
 
-export default AutocompleteExample;
+export default AutoCompleteInput;

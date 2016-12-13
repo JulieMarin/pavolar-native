@@ -1,6 +1,6 @@
 import React from 'react';
-import { Scene, Router, ActionConst, Actions } from 'react-native-router-flux';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Scene, Router, Actions } from 'react-native-router-flux';
+import { StyleSheet, Text, View } from 'react-native';
 import MainPage from './components/MainPage';
 import Title from './components/Title';
 import SearchResultTitle from './components/SearchResultTitle';
@@ -12,9 +12,8 @@ import BookingStepThree from './components/BookingStepThree';
 import BookingStepFour from './components/BookingStepFour';
 import BookingStepFive from './components/BookingStepFive';
 import Confirmation from './components/Confirmation';
-import AutocompleteExample from './components/AutocompleteExample';
 
-const RouterComponent = (props) => {
+const RouterComponent = () => {
   return (
     <Router navigationBarStyle={styles.header}>
       <Scene key={'root'}>
@@ -22,7 +21,7 @@ const RouterComponent = (props) => {
         <Scene
           sceneStyle={styles.container}
           key='mainPage'
-          component={AutocompleteExample}
+          component={MainPage}
           title={Title}
           initial
         />

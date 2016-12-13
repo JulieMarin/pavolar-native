@@ -34,10 +34,14 @@ class MainPage extends Component {
     return (
       <View style={container}>
         <Image style={backgroundImage} source={this.backgroundCycle()}>
-        <ScrollView style={{ flex: 1 }}>
+        <ScrollView style={{ flex: 1 }} keyboardShouldPersistTaps={false}>
           <Tab />
-          <LocationSelection />
-          <DateSelection />
+          <View style={{ zIndex: 100 }}>
+            <LocationSelection />
+          </View>
+          <View style={{ zIndex: 1 }}>
+            <DateSelection />
+          </View>
           <PassengerSelection />
           <FlightPreference />
           <SearchButton />

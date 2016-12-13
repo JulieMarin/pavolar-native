@@ -34,7 +34,7 @@ class SignInMenu extends Component {
     this.props.authUser(params);
   }
 
-  handleTextChange(text) {
+  handleTextChange() {
 
   }
 

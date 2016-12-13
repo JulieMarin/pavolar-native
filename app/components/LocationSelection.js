@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { TextInput, StyleSheet, TouchableOpacity, Text, View, Modal } from 'react-native';
-import AutoComplete from 'react-native-autocomplete';
+import { TextInput, StyleSheet, Text } from 'react-native';
 import CardContainer from './CardContainer';
 import CardSlat from './CardSlat';
 import Assets from '../images/Assets';
 import Icon from './Icon';
-import { countries } from './countries';
-import ModalDropdown from 'react-native-modal-dropdown';
+import AutoCompleteInput from './AutoCompleteInput';
 
 class LocationSelection extends Component {
   constructor(props) {
@@ -16,27 +14,18 @@ class LocationSelection extends Component {
     }
   }
 
-  _dropdownShow() {
-    this._dropdown && this._dropdown.show();
-  }
-
   render() {
     return (
       <CardContainer>
-        <CardSlat>
+        <CardSlat style={{ zIndex: 2}}>
           <Icon style={icon} source={Assets.leavingFrom} />
-            <Text>LOL</Text>
+          <AutoCompleteInput />
         </CardSlat>
 
-        <CardSlat>
+        <CardSlat style={{ zIndex: 1}}>
           <Icon style={icon} source={Assets.goingTo} />
-          <TextInput
-            style={text}
-            autoCapitalize={'characters'}
-            placeholder={'GOING TO'}
-          />
+          <AutoCompleteInput />
         </CardSlat>
-
       </CardContainer>
     );
   }
@@ -60,7 +49,7 @@ const styles = StyleSheet.create({
     marginBottom: 5.5,
     marginLeft: 9,
     marginRight: 9,
-  }
+  },
 });
 
 const { text, icon } = styles;
