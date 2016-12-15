@@ -76,7 +76,7 @@ class RootLayer extends Component {
         </Modal>
 
         <Modal
-          isOpen={this.props.loading}
+          isOpen={false}
           position={"center"}
           entry={'bottom'}
           animationDuration={400}

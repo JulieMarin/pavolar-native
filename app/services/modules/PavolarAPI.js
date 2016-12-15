@@ -6,8 +6,16 @@ class APIRouter {
   }
 
   getAuthenticate(params) {
-    return axios.get( this.rootURI + '/1/user/authenticate/account.json', {
+    return axios.get(this.rootURI + '/1/user/authenticate/account.json', {
       params: params
+    })
+  }
+
+  searchAirports(query) {
+    return axios.get('https://api-cdn.pavolar.com/1/flights/airports/search.json', {
+      params: {
+        query: query
+      }
     })
   }
 

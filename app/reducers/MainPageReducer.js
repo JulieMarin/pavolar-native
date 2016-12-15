@@ -1,7 +1,10 @@
 import {
-  TOGGLE_DESTINATION_MODE,
+  TOGGLE_ONE_WAY,
+  TOGGLE_ROUND_TRIP,
 
   SWAP_LOCATIONS,
+
+  UPDATE_FORM_OPTION,
 
   SET_AIRPORT_DEPART_CODE,
   SET_AIRPORT_RETURN_CODE,
@@ -30,33 +33,48 @@ import {
   TOGGLE_SERACH_BY_AIRLINE,
   TOGGLE_SET_DIRECT_FLIGHTS_ONLY,
 
-  RESET_FIELDS
+  RESET_FIELDS,
+
+  CULL_AIRLINE_SEARCH_RESULTS
 
 } from '../actions/types';
 
 const INITIAL_STATE = {
-  destinationMode: 'default',
-  swapLocations: 'false',
+  destinationMode: 'RoundTrip',
   airportDepartCode: '',
   airportReturnCode: '',
+  airportDepartLocation: '',
+  airportReturnLocation: '',
   drawerOpen: false,
   departDateModalOpen: false,
   returnDateModalOpen: false,
-  departDate: '',
-  returnDate: '',
+  departDate: 'test',
+  returnDate: 'test2',
   adultCount: 0,
   childCount: 0,
   infantCount: 0,
   searchByAirline: false,
   searchDirectFlightsOnly: false,
+  departData: [],
+  returnData: [],
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case TOGGLE_DESTINATION_MODE:
-      return { ...state, destinationMode: true };
+    case TOGGLE_ONE_WAY:
+      return { ...state, destinationMode: 'OneWay' };
+    case TOGGLE_ROUND_TRIP:
+      return { ...state, destinationMode: 'RoundTrip' };
     case SWAP_LOCATIONS:
-      return { ...state, swapLocations: true };
+      return {
+         ...state,
+         airportDepartCode: state.airportReturnCode,
+         airportReturnCode: state.airportDepartCode
+       };
+    case CULL_AIRLINE_SEARCH_RESULTS:
+      return { ...state, [action.payload.prop]: action.payload.value }
+    case UPDATE_FORM_OPTION:
+      return { ...state, [action.payload.prop]: action.payload.value }
     default:
       return state;
   }

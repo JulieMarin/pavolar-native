@@ -1,30 +1,71 @@
 import React, { Component } from 'react';
-import { TextInput, StyleSheet, Text } from 'react-native';
+import { connect } from 'react-redux';
+import { StyleSheet } from 'react-native';
 import CardContainer from './CardContainer';
 import CardSlat from './CardSlat';
 import Assets from '../images/Assets';
 import Icon from './Icon';
 import AutoCompleteInput from './AutoCompleteInput';
+import {
+  updateFormOption,
+  cullAirlineSearchResults,
+} from '../actions';
+
 
 class LocationSelection extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      query: ''
-    }
   }
-
   render() {
+    const {
+      departData,
+      airportDepartCode,
+      returnData,
+      airportReturnCode,
+      airportDepartLocation,
+      airportReturnLocation,
+      updateFormOption,
+      cullAirlineSearchResults,
+    } = this.props;
+
     return (
       <CardContainer>
-        <CardSlat style={{ zIndex: 2}}>
+        <CardSlat style={{ zIndex: 2 }}>
           <Icon style={icon} source={Assets.leavingFrom} />
-          <AutoCompleteInput />
+          <AutoCompleteInput
+            dataContainer={departData}
+            defaultInputValue={airportDepartLocation}
+            placeholder={'LEAVING FROM'}
+            styleRef={this.props.autocomplete}
+
+            cullAirlineSearchResults={cullAirlineSearchResults.bind(this)}
+            updateFormOption={updateFormOption.bind(this)}
+
+            stringRefs={{
+              data: 'departData',
+              airportCode: 'airportDepartCode',
+              airportLocation: 'airportDepartLocation'
+            }}
+          />
         </CardSlat>
 
-        <CardSlat style={{ zIndex: 1}}>
+        <CardSlat style={{ zIndex: 1 }}>
           <Icon style={icon} source={Assets.goingTo} />
-          <AutoCompleteInput />
+          <AutoCompleteInput
+            dataContainer={returnData}
+            defaultInputValue={airportReturnLocation}
+            placeholder={'GOING TO'}
+            styleRef={this.props.autocomplete}
+
+            cullAirlineSearchResults={cullAirlineSearchResults.bind(this)}
+            updateFormOption={updateFormOption.bind(this)}
+
+            stringRefs={{
+              data: 'returnData',
+              airportCode: 'airportReturnCode',
+              airportLocation: 'airportReturnLocation'
+            }}
+          />
         </CardSlat>
       </CardContainer>
     );
@@ -52,6 +93,33 @@ const styles = StyleSheet.create({
   },
 });
 
-const { text, icon } = styles;
+const { icon } = styles;
 
-export default LocationSelection;
+const mapStateToProps = ({ main, mainStyle }) => {
+  const {
+    airportDepartCode,
+    airportReturnCode,
+    departData,
+    returnData,
+    airportDepartLocation,
+    airportReturnLocation,
+   } = main;
+
+   const { autocomplete } = mainStyle
+
+  return {
+    airportDepartCode,
+    airportReturnCode,
+    departData,
+    returnData,
+    airportDepartLocation,
+    airportReturnLocation,
+    autocomplete
+   }
+}
+
+export default connect(
+  mapStateToProps, {
+    updateFormOption,
+    cullAirlineSearchResults,
+})(LocationSelection);

@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import SideMenu from 'react-native-side-menu';
 import NavigationBar from 'react-native-navbar';
 import Drawer from 'react-native-drawer';
+import dismissKeyboard from 'dismissKeyboard';
 import {
   View,
   StyleSheet,
   Image,
   ScrollView,
-  Text
+  Text,
+  TouchableWithoutFeedback
 } from 'react-native';
 import backgroundAssets from '../images/BackgroundAssets';
 import Tab from './Tab';
@@ -17,13 +20,12 @@ import DateSelection from './DateSelection';
 import PassengerSelection from './PassengerSelection';
 import SearchButton from './SearchButton';
 import FlightPreference from './FlightPreference';
+import { toggleDestinationMode } from '../actions';
 
 class MainPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      background: null,
-    };
+
   }
 
   backgroundCycle() {
@@ -34,17 +36,21 @@ class MainPage extends Component {
     return (
       <View style={container}>
         <Image style={backgroundImage} source={this.backgroundCycle()}>
-        <ScrollView style={{ flex: 1 }} keyboardShouldPersistTaps={false}>
-          <Tab />
-          <View style={{ zIndex: 100 }}>
-            <LocationSelection />
-          </View>
-          <View style={{ zIndex: 1 }}>
-            <DateSelection />
-          </View>
-          <PassengerSelection />
-          <FlightPreference />
-          <SearchButton />
+        <ScrollView style={{ flex: 1 }} keyboardShouldPersistTaps={true}>
+          <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
+            <View>
+              <Tab action={this.props.toggleDestinationMode.bind(this)} />
+              <View style={{ zIndex: 100 }}>
+                <LocationSelection />
+              </View>
+              <View style={{ zIndex: 1 }}>
+                <DateSelection />
+              </View>
+              <PassengerSelection />
+              <FlightPreference />
+              <SearchButton />
+            </View>
+          </TouchableWithoutFeedback>
         </ScrollView>
         <Dock />
         </Image>
@@ -79,4 +85,9 @@ const styles = StyleSheet.create({
 
 const { container, backgroundImage, logoStyle, navBar, statusBar } = styles;
 
-export default MainPage;
+const mapStateToProps = ({ main }) => {
+  const { destinationMode } = main;
+  return { destinationMode };
+};
+
+export default connect(mapStateToProps, { toggleDestinationMode })(MainPage);

@@ -2,15 +2,17 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Button } from './common';
 
-const Tab = () => {
+const Tab = (props) => {
   return (
     <View style={container}>
       <Button
+        onPress={() => props.action('RoundTrip')}
         text={'ROUND TRIP'}
         backgroundColor={'#0172fc'}
         width={170}
       />
       <Button
+        onPress={() => props.action('OneWay')}
         text={'ONE WAY'}
         backgroundColor={'rgba(255, 0, 0, 0)'}
         borderColor={'#ffffff'}

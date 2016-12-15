@@ -11,6 +11,7 @@ export const authUser = (params) => {
     dispatch({ type: LOGIN_USER_ACTIVITY })
     authenticateUser(params)
       .then(response => {
+        console.log(response)
         if (response.data.success) {
           _resetCredentials();
           _persistCredentials(params);
