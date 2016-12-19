@@ -12,27 +12,48 @@ import { extractCity, extractAirportCode } from '../services';
 class AutoCompleteInput extends Component{
   constructor(props) {
     super(props);
-    this.cullAirlineSearchResults = this.props.cullAirlineSearchResults
-    this.stringRefs = this.props.stringRefs,
-    this.updateLocation = this.props.updateFormOption;
-    this.updateAirportCode = this.props.updateFormOption;
-    this.clearSearchData = this.props.updateFormOption;
+
   }
 
   handleTextChange(text) {
+    const {
+      keyRefs,
+      updateLocField,
+      cullAirlineSearchResults,
+      clearData
+    } = this.props
     if (text.length >= 2) {
-      this.updateLocation({ prop: this.stringRefs.airportLocation, value: text });
-      this.cullAirlineSearchResults(this.stringRefs.data, text)
+      updateLocField({
+        prop: keyRefs.airportLocation,
+        value: text
+      });
+      cullAirlineSearchResults(keyRefs.data, text);
     }
-    this.updateLocation({ prop: this.stringRefs.airportLocation, value: "" });
-    this.clearSearchData({ prop: this.stringRefs.data, value: [] });
+    clearData({
+      prop: keyRefs.data,
+      value: []
+    })
+    updateLocField({
+      prop: keyRefs.airportCode,
+      value: ''
+    });
   }
 
   selectSuggestion(selection) {
+    const { keyRefs, updateLocField, clearData } = this.props;
     dismissKeyboard();
-    this.updateAirportCode({ prop: this.stringRefs.airportCode, value: extractAirportCode(selection)[1] });
-    this.updateLocation({ prop: this.stringRefs.airportLocation, value: extractCity(selection)[1] });
-    this.clearSearchData({ prop: this.stringRefs.data, value: [] });
+    clearData({
+      prop: keyRefs.data,
+      value: []
+    })
+    updateLocField({
+      prop: keyRefs.airportCode,
+      value: extractAirportCode(selection)[1]
+    });
+    updateLocField({
+      prop: keyRefs.airportLocation,
+      value: extractCity(selection)[1]
+    });
   }
 
   render() {
@@ -46,7 +67,8 @@ class AutoCompleteInput extends Component{
       <View style={styles.container}>
         <Autocomplete
           style={styles.text}
-          autoCapitalize={"none"}
+          autoCapitalize={'characters'}
+          selectTextOnFocus={true}
           autoCorrect={false}
           containerStyle={styles.autocompleteContainer}
           inputContainerStyle={styles.input}
@@ -73,7 +95,7 @@ class AutoCompleteInput extends Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignSelf: 'stretch',
+    // alignSelf: 'stretch',
   },
   autocompleteContainer: {
     marginLeft: 4,

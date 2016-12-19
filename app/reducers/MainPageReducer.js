@@ -40,51 +40,41 @@ import {
 
 } from '../actions/types';
 
-const INITIAL_STATE = {
-  destinationMode: 'RoundTrip',
-  airportDepartCode: '',
-  airportReturnCode: '',
-  airportDepartLocation: '',
-  airportReturnLocation: '',
+const INITIAL_STATE = Map({
   drawerOpen: false,
-  departDateModalOpen: false,
-  returnDateModalOpen: false,
-  departDate: 'test',
-  returnDate: 'test2',
+  locationPreferences: {
+    airportDepartCode: '',
+    airportReturnCode: '',
+    airportDepartLocation: '',
+    airportReturnLocation: '',
+  },
+  datePreferences: {
+    departDateModalOpen: false,
+    returnDateModalOpen: false,
+    departDate: 'test',
+    returnDate: 'test2',
+  },
   passengers: {
     adultCount: 0,
     childCount: 0,
     infantCount: 0,
   },
   flightPreferences: {
+    destinationMode: 'RoundTrip',
     searchByAirline: false,
     searchDirectFlightsOnly: false,
   },
-  departData: [],
-  returnData: [],
-  searchLoading: false,
-};
+  searchResults: {
+    searchLoading: false,
+    departData: [],
+    returnData: [],
+  },
+});
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case TOGGLE_ONE_WAY:
-      return { ...state, destinationMode: 'OneWay' };
-    case TOGGLE_ROUND_TRIP:
-      return { ...state, destinationMode: 'RoundTrip' };
-    case SWAP_LOCATIONS:
-      return {
-         ...state,
-         airportDepartCode: state.airportReturnCode,
-         airportReturnCode: state.airportDepartCode,
-         airportDepartLocation: state.airportReturnLocation,
-         airportReturnLocation: state.airportDepartLocation
-       };
-    case SEARCH_LOADING:
-      return { ...state, searchLoading: action.payload }
-    case CULL_AIRLINE_SEARCH_RESULTS:
-      return { ...state, [action.payload.prop]: action.payload.value }
-    case UPDATE_FORM_OPTION:
-      return { ...state, [action.payload.prop]: action.payload.value }
+      return state.setIn(["flightPreferences", "destinationMode"], 'OneWay').toJS() ;
     default:
       return state;
   }

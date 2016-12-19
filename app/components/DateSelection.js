@@ -39,18 +39,9 @@ class DateSelection extends Component {
 
         <CardSlat>
           <Icon style={icon} source={Assets.returnDate} />
-          <DatePicker
-            date={this.state.returnDate}
-            mode="date"
-            placeholder="RETURN DATE"
-            showIcon={false}
-            format='MM/DD/YY'
-            minDate={new Date()}
-            maxDate={this.maxDate()}
-            confirmBtnText="Confirm"
-            cancelBtnText="Cancel"
-            onDateChange={(date) => { this.setState({ returnDate: date }); }}
-          />
+          <TouchableOpacity onPress={() => console.log(this.props)}>
+            <Text>MODAL TEST</Text>
+          </TouchableOpacity>
         </CardSlat>
 
       </CardContainer>

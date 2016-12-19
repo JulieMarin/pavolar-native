@@ -20,7 +20,7 @@ import DateSelection from './DateSelection';
 import PassengerSelection from './PassengerSelection';
 import SearchButton from './SearchButton';
 import FlightPreference from './FlightPreference';
-import { toggleDestinationMode } from '../actions';
+import { toggleTravelMode } from '../actions';
 
 class MainPage extends Component {
   constructor(props) {
@@ -39,7 +39,7 @@ class MainPage extends Component {
         <ScrollView style={{ flex: 1 }} keyboardShouldPersistTaps={true}>
           <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
             <View>
-              <Tab action={this.props.toggleDestinationMode.bind(this)} />
+              <Tab action={this.props.toggleTravelMode.bind(this)} />
               <View style={{ zIndex: 100 }}>
                 <LocationSelection />
               </View>
@@ -85,9 +85,9 @@ const styles = StyleSheet.create({
 
 const { container, backgroundImage, logoStyle, navBar, statusBar } = styles;
 
-const mapStateToProps = ({ main }) => {
-  const { destinationMode } = main;
+const mapStateToProps = ({ flightOptions }) => {
+  const { destinationMode } = flightOptions.travelPreferences;
   return { destinationMode };
 };
 
-export default connect(mapStateToProps, { toggleDestinationMode })(MainPage);
+export default connect(mapStateToProps, { toggleTravelMode })(MainPage);

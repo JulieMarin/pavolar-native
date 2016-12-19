@@ -4,12 +4,12 @@ import { StyleSheet, ActivityIndicator } from 'react-native';
 import CustomText from './CustomText';
 import CardContainer from './CardContainer';
 import CardSlat from './CardSlat';
-import Assets from '../images/Assets';
 import Icon from './Icon';
 import AutoCompleteInput from './AutoCompleteInput';
 import {
-  updateFormOption,
+  updateLocField,
   cullAirlineSearchResults,
+  populateAutocomplete
 } from '../actions';
 
 
@@ -18,44 +18,51 @@ class LocationSelection extends Component {
     super(props);
   }
 
-  flightIcon(airlineCode) {
+  flightIcon(airlineCode, image) {
     if(airlineCode.length == 0) {
       return (
-        <Icon style={icon} source={Assets.leavingFrom} />
+        <Icon style={icon} source={image} />
       )
     }
     return (
-      <CustomText>{airlineCode}</CustomText>
+      <CustomText
+        style={icon}
+        size={14}
+        color={'#a3a3a3'}
+        fontWeight={'600'}
+      >
+        {airlineCode}
+      </CustomText>
     )
   }
 
   render() {
     const {
-      departData,
       airportDepartCode,
-      returnData,
       airportReturnCode,
       airportDepartLocation,
       airportReturnLocation,
-      updateFormOption,
+      departData,
+      returnData,
+      searchLoading,
+      updateLocField,
       cullAirlineSearchResults,
-      searchLoading
+      populateAutocomplete
     } = this.props;
-
     return (
       <CardContainer>
         <CardSlat style={{ zIndex: 2 }}>
-          {this.flightIcon(airportDepartCode)}
+          {this.flightIcon(airportDepartCode, require('image!leaving_from'))}
           <AutoCompleteInput
             dataContainer={departData}
             defaultInputValue={airportDepartLocation}
             placeholder={'LEAVING FROM'}
-            styleRef={this.props.autocomplete}
 
-            cullAirlineSearchResults={cullAirlineSearchResults.bind(this)}
-            updateFormOption={updateFormOption.bind(this)}
+            updateLocField ={updateLocField.bind(this)}
+            cullAirlineSearchResults = {cullAirlineSearchResults.bind(this)}
+            clearData = {populateAutocomplete.bind(this)}
 
-            stringRefs={{
+            keyRefs={{
               data: 'departData',
               airportCode: 'airportDepartCode',
               airportLocation: 'airportDepartLocation'
@@ -69,17 +76,17 @@ class LocationSelection extends Component {
         </CardSlat>
 
         <CardSlat style={{ zIndex: 1 }}>
-          {this.flightIcon(airportReturnCode)}
+          {this.flightIcon(airportReturnCode, require('image!going_to'))}
           <AutoCompleteInput
             dataContainer={returnData}
             defaultInputValue={airportReturnLocation}
             placeholder={'GOING TO'}
-            styleRef={this.props.autocomplete}
 
-            cullAirlineSearchResults={cullAirlineSearchResults.bind(this)}
-            updateFormOption={updateFormOption.bind(this)}
+            updateLocField ={updateLocField.bind(this)}
+            cullAirlineSearchResults = {cullAirlineSearchResults.bind(this)}
+            clearData = {populateAutocomplete.bind(this)}
 
-            stringRefs={{
+            keyRefs={{
               data: 'returnData',
               airportCode: 'airportReturnCode',
               airportLocation: 'airportReturnLocation'
@@ -105,7 +112,7 @@ const styles = StyleSheet.create({
     marginRight: 9,
   },
   icon: {
-    marginTop: 5.5,
+    marginTop: 5,
     marginBottom: 5.5,
     marginLeft: 9,
     marginRight: 9,
@@ -114,30 +121,36 @@ const styles = StyleSheet.create({
 
 const { icon } = styles;
 
-const mapStateToProps = ({ main }) => {
+const mapStateToProps = ({ flightOptions }) => {
   const {
     airportDepartCode,
     airportReturnCode,
-    departData,
-    returnData,
     airportDepartLocation,
     airportReturnLocation,
-    searchLoading
-   } = main;
+  } = flightOptions.locationPreferences;
+
+  const {
+    searchLoading,
+    departData,
+    returnData,
+  } = flightOptions.locSearchResults;
 
   return {
     airportDepartCode,
     airportReturnCode,
-    departData,
-    returnData,
     airportDepartLocation,
     airportReturnLocation,
+    departData,
+    returnData,
     searchLoading
    }
 }
 
 export default connect(
-  mapStateToProps, {
-    updateFormOption,
+  mapStateToProps,
+  {
+    updateLocField,
     cullAirlineSearchResults,
-})(LocationSelection);
+    populateAutocomplete
+  }
+)(LocationSelection);
