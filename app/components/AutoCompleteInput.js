@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { extractCity, extractAirportCode } from '../services';
 
-class AutoCompleteInput extends Component {
+class AutoCompleteInput extends Component{
   constructor(props) {
     super(props);
     this.cullAirlineSearchResults = this.props.cullAirlineSearchResults

@@ -3,6 +3,7 @@ import {
   TOGGLE_ROUND_TRIP,
   SWAP_LOCATIONS,
   UPDATE_FORM_OPTION,
+  SEARCH_LOADING
 } from './types';
 import { PavolarAPI } from '../services/modules';
 
@@ -30,6 +31,7 @@ export const updateFormOption = ({ prop, value }) => {
 
 export const cullAirlineSearchResults = (stringRef, query) => {
   return (dispatch) => {
+    dispatch({ type: SEARCH_LOADING, payload: true });
     getAirlines(query)
       .then((response) => {
           dispatch({
@@ -39,6 +41,7 @@ export const cullAirlineSearchResults = (stringRef, query) => {
               value: response.data.response.slice(0, 8)
             }
           });
+          dispatch({ type: SEARCH_LOADING, payload: false });
       })
   }
 }

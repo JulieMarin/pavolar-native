@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ActivityIndicator } from 'react-native';
+import CustomText from './CustomText';
 import CardContainer from './CardContainer';
 import CardSlat from './CardSlat';
 import Assets from '../images/Assets';
@@ -16,6 +17,18 @@ class LocationSelection extends Component {
   constructor(props) {
     super(props);
   }
+
+  flightIcon(airlineCode) {
+    if(airlineCode.length == 0) {
+      return (
+        <Icon style={icon} source={Assets.leavingFrom} />
+      )
+    }
+    return (
+      <CustomText>{airlineCode}</CustomText>
+    )
+  }
+
   render() {
     const {
       departData,
@@ -26,12 +39,13 @@ class LocationSelection extends Component {
       airportReturnLocation,
       updateFormOption,
       cullAirlineSearchResults,
+      searchLoading
     } = this.props;
 
     return (
       <CardContainer>
         <CardSlat style={{ zIndex: 2 }}>
-          <Icon style={icon} source={Assets.leavingFrom} />
+          {this.flightIcon(airportDepartCode)}
           <AutoCompleteInput
             dataContainer={departData}
             defaultInputValue={airportDepartLocation}
@@ -47,10 +61,15 @@ class LocationSelection extends Component {
               airportLocation: 'airportDepartLocation'
             }}
           />
+          <ActivityIndicator
+            animating={searchLoading}
+            size={'small'}
+            color={'#0076f8'}
+          />
         </CardSlat>
 
         <CardSlat style={{ zIndex: 1 }}>
-          <Icon style={icon} source={Assets.goingTo} />
+          {this.flightIcon(airportReturnCode)}
           <AutoCompleteInput
             dataContainer={returnData}
             defaultInputValue={airportReturnLocation}
@@ -95,7 +114,7 @@ const styles = StyleSheet.create({
 
 const { icon } = styles;
 
-const mapStateToProps = ({ main, mainStyle }) => {
+const mapStateToProps = ({ main }) => {
   const {
     airportDepartCode,
     airportReturnCode,
@@ -103,9 +122,8 @@ const mapStateToProps = ({ main, mainStyle }) => {
     returnData,
     airportDepartLocation,
     airportReturnLocation,
+    searchLoading
    } = main;
-
-   const { autocomplete } = mainStyle
 
   return {
     airportDepartCode,
@@ -114,7 +132,7 @@ const mapStateToProps = ({ main, mainStyle }) => {
     returnData,
     airportDepartLocation,
     airportReturnLocation,
-    autocomplete
+    searchLoading
    }
 }
 

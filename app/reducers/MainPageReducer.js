@@ -35,7 +35,8 @@ import {
 
   RESET_FIELDS,
 
-  CULL_AIRLINE_SEARCH_RESULTS
+  CULL_AIRLINE_SEARCH_RESULTS,
+  SEARCH_LOADING
 
 } from '../actions/types';
 
@@ -50,13 +51,18 @@ const INITIAL_STATE = {
   returnDateModalOpen: false,
   departDate: 'test',
   returnDate: 'test2',
-  adultCount: 0,
-  childCount: 0,
-  infantCount: 0,
-  searchByAirline: false,
-  searchDirectFlightsOnly: false,
+  passengers: {
+    adultCount: 0,
+    childCount: 0,
+    infantCount: 0,
+  },
+  flightPreferences: {
+    searchByAirline: false,
+    searchDirectFlightsOnly: false,
+  },
   departData: [],
   returnData: [],
+  searchLoading: false,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -69,8 +75,12 @@ export default (state = INITIAL_STATE, action) => {
       return {
          ...state,
          airportDepartCode: state.airportReturnCode,
-         airportReturnCode: state.airportDepartCode
+         airportReturnCode: state.airportDepartCode,
+         airportDepartLocation: state.airportReturnLocation,
+         airportReturnLocation: state.airportDepartLocation
        };
+    case SEARCH_LOADING:
+      return { ...state, searchLoading: action.payload }
     case CULL_AIRLINE_SEARCH_RESULTS:
       return { ...state, [action.payload.prop]: action.payload.value }
     case UPDATE_FORM_OPTION:
