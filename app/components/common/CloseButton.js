@@ -8,7 +8,7 @@ import {
 
 const CloseButton = (props) => {
   return (
-    <View>
+    <View style={props.style}>
       <TouchableOpacity onPress={() => props.onButtonPress()}>
         <Image
           source={require('image!close')}

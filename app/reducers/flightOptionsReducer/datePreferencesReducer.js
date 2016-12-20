@@ -19,6 +19,8 @@ const INITIAL_STATE = {
   currentDate: new Date(),
   departDate: new Date(),
   returnDate: new Date(),
+  departDateSelected: false,
+  returnDateSelected: false
 };
 
 export default (state = INITIAL_STATE, action) => {

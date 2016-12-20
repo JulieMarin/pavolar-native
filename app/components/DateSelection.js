@@ -21,16 +21,31 @@ import {
 
 
 class DateSelection extends Component {
-  maxDate() {
-    const currentDate = new Date();
-    currentDate.setMonth(currentDate.getMonth() + 6);
-    return currentDate;
+  isDateSet(selected, date, placeholder) {
+    if (selected) {
+      return (
+        <CustomText size={14} fontWeight={'600'} color={'#313131'}>
+          {date.toLocaleDateString()}
+        </CustomText>
+      )
+    } else {
+      return(
+        <CustomText size={14} color={'#a3a3a3'}>
+          {placeholder}
+        </CustomText>
+      )
+    }
   }
 
   render() {
     const {
       toggleDepartDateModal,
-      toggleReturnDateModal
+      toggleReturnDateModal,
+      departDate,
+      returnDate,
+      departDateSelected,
+      returnDateSelected
+
     } = this.props;
     return (
       <CardContainer>
@@ -41,12 +56,7 @@ class DateSelection extends Component {
             onPress={() => toggleDepartDateModal(true)}
             style={styles.modalButton}
           >
-            <CustomText
-              size={14}
-              color={'#a3a3a3'}
-            >
-              DEPARTURE DATE
-            </CustomText>
+            {this.isDateSet(departDateSelected, departDate, 'DEPARTURE DATE')}
           </TouchableOpacity>
         </CardSlat>
 
@@ -56,12 +66,7 @@ class DateSelection extends Component {
             onPress={() => toggleReturnDateModal(true)}
             style={styles.modalButton}
           >
-            <CustomText
-              size={14}
-              color={'#a3a3a3'}
-            >
-              RETURN DATE
-            </CustomText>
+            {this.isDateSet(returnDateSelected, returnDate, 'RETURN DATE')}
           </TouchableOpacity>
         </CardSlat>
 
@@ -95,11 +100,15 @@ const mapStateToProps = ({ flightOptions }) => {
   const {
     departDate,
     returnDate,
+    departDateSelected,
+    returnDateSelected
   } = flightOptions.datePreferences
 
   return {
     departDate,
     returnDate,
+    departDateSelected,
+    returnDateSelected
   }
 };
 

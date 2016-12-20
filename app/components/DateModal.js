@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import { CloseButton } from './common';
 import CalendarPicker from 'react-native-calendar-picker';
+import CustomText from './CustomText';
 
 class DateModal extends Component {
-  setDate(dateRef, date) {
-    this.props.updateDateField({
-      prop: dateRef,
+  setDate(refs, date) {
+    const { updateDateField } = this.props;
+    updateDateField({
+      prop: refs.date,
       value: date
+    })
+    updateDateField({
+      prop: refs.selected,
+      value: true
     })
   }
 
@@ -16,16 +22,21 @@ class DateModal extends Component {
       currentDate,
       maxDate,
       toggleModal,
-      updateDateField,
       dateSelection,
-      dateRef
+      keyRefs
     } = this.props;
     return (
     <View>
-      <CloseButton onButtonPress={() => toggleModal(false)} />
+      <View>
+        <CloseButton
+          style={styles.button}
+          onButtonPress={() => toggleModal(false)}
+        />
+
+      </View>
       <CalendarPicker
         selectedDate={dateSelection}
-        onDateChange={(date) => this.setDate(dateRef, date)}
+        onDateChange={(date) => this.setDate(keyRefs, date)}
         screenWidth={Dimensions.get('window').width}
         selectedBackgroundColor={'#5ce600'}
         selectedDayColor={'#8dc4fe'}
@@ -38,8 +49,8 @@ class DateModal extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-
+  button: {
+    marginBottom: 10
   }
 });
 

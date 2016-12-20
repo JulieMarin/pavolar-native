@@ -86,7 +86,10 @@ class RootLayer extends Component {
             dateSelection={departDate}
             updateDateField={updateDateField.bind(this)}
             toggleModal={toggleDepartDateModal.bind(this)}
-            dateRef={'departDate'}
+            keyRefs={{
+              date: 'departDate',
+              selected: 'departDateSelected'
+            }}
           />
         </Modal>
 
@@ -105,7 +108,10 @@ class RootLayer extends Component {
             dateSelection={returnDate}
             updateDateField={updateDateField.bind(this)}
             toggleModal={toggleReturnDateModal.bind(this)}
-            dateRef={'returnDate'}
+            keyRefs={{
+              date: 'returnDate',
+              selected: 'returnDateSelected'
+            }}
           />
         </Modal>
 
@@ -142,8 +148,9 @@ const styles = StyleSheet.create({
   dateModal: {
     alignItems: 'center',
     alignSelf: 'stretch',
-    height: 350,
+    height: 400,
     paddingTop: 30,
+    paddingBottom: 10,
     borderBottomWidth: 1.5,
     borderColor: 'rgb(221, 221, 221)'
   },
