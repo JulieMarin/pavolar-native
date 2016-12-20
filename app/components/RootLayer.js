@@ -42,6 +42,10 @@ class RootLayer extends Component {
   }
 
   render() {
+    const {
+      departDateModalOpen,
+      returnDateModalOpen
+    } = this.props;
     return (
         <Drawer
           open={this.state.drawerOpen}
@@ -56,7 +60,18 @@ class RootLayer extends Component {
           <RouterComponent />
         <Modal
           style={styles.dateModal}
-          isOpen={false}
+          isOpen={departDateModalOpen}
+          position={"center"}
+          entry={'bottom'}
+          animationDuration={400}
+          swipeToClose={true}
+        >
+          <DateModal />
+        </Modal>
+
+        <Modal
+          style={styles.dateModal}
+          isOpen={returnDateModalOpen}
           position={"center"}
           entry={'bottom'}
           animationDuration={400}
@@ -114,9 +129,29 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ auth }) => {
-  const { email, password, statusMessage, loading, sessionID } = auth;
-  return { email, password, statusMessage, loading, sessionID };
+const mapStateToProps = ({ auth, flightOptions }) => {
+  const {
+    email,
+    password,
+    statusMessage,
+    loading,
+    sessionID
+  } = auth;
+
+  const {
+    departDateModalOpen,
+    returnDateModalOpen
+  } = flightOptions.datePreferences;
+
+  return {
+    email,
+    password,
+    statusMessage,
+    loading,
+    sessionID,
+    departDateModalOpen,
+    returnDateModalOpen
+  };
 };
 
 export default connect(mapStateToProps, { loginUser, authUser })(RootLayer);

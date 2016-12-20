@@ -67,6 +67,7 @@ class AutoCompleteInput extends Component{
       <View style={styles.container}>
         <Autocomplete
           style={styles.text}
+          placeholderTextColor={'#a3a3a3'}
           autoCapitalize={'characters'}
           selectTextOnFocus={true}
           autoCorrect={false}
@@ -98,8 +99,8 @@ const styles = StyleSheet.create({
     // alignSelf: 'stretch',
   },
   autocompleteContainer: {
-    marginLeft: 4,
-    marginRight: 4,
+    // marginLeft: 4,
+    // marginRight: 4,
   },
   itemText: {
     fontSize: 13,
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
   text: {
     height: 35,
     fontFamily: 'AvenirNext-Medium',
-    fontWeight: '500',
+    fontWeight: '400',
     color: '#313131',
     fontSize: 14,
   },

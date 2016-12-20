@@ -8,8 +8,8 @@ import {
 const INITIAL_STATE = {
   departDateModalOpen: false,
   returnDateModalOpen: false,
-  departDate: 'here',
-  returnDate: 'now',
+  departDate: '',
+  returnDate: '',
 };
 
 export default (state = INITIAL_STATE, action) => {
