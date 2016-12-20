@@ -21,16 +21,6 @@ import {
 
 
 class DateSelection extends Component {
-  constructor(props) {
-    super(props);
-    this.maxDate();
-    this.state = {
-      date: new Date(),
-      departDate: '',
-      returnDate: '',
-    };
-  }
-
   maxDate() {
     const currentDate = new Date();
     currentDate.setMonth(currentDate.getMonth() + 6);
@@ -48,7 +38,7 @@ class DateSelection extends Component {
         <CardSlat>
           <Icon style={icon} source={Assets.departureDate} />
           <TouchableOpacity
-            onPress={() => toggleDepartDateModal()}
+            onPress={() => toggleDepartDateModal(true)}
             style={styles.modalButton}
           >
             <CustomText
@@ -63,7 +53,7 @@ class DateSelection extends Component {
         <CardSlat>
           <Icon style={icon} source={Assets.returnDate} />
           <TouchableOpacity
-            onPress={() => toggleReturnDateModal()}
+            onPress={() => toggleReturnDateModal(true)}
             style={styles.modalButton}
           >
             <CustomText
@@ -109,7 +99,7 @@ const mapStateToProps = ({ flightOptions }) => {
 
   return {
     departDate,
-    returnDate
+    returnDate,
   }
 };
 

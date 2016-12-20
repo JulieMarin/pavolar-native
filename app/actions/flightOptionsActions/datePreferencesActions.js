@@ -18,10 +18,16 @@ export const updateDateField = ({prop, value}) => {
   }
 };
 
-export const toggleDepartDateModal = () => {
-  return { type: TOGGLE_DEPART_DATE_MODAL }
+export const toggleDepartDateModal = (selection) => {
+  return {
+    type: TOGGLE_DEPART_DATE_MODAL,
+    payload: selection
+  }
 }
 
-export const toggleReturnDateModal = () => {
-  return { type: TOGGLE_RETURN_DATE_MODAL }
+export const toggleReturnDateModal = (selection) => {
+  return {
+    type: TOGGLE_RETURN_DATE_MODAL,
+    payload: selection 
+  }
 }

@@ -8,7 +8,13 @@ import DrawerMenu from './DrawerMenu';
 import FilterMenu from './FilterMenu';
 import DateModal from './DateModal';
 import SignInMenu from './SignInMenu';
-import { loginUser, authUser } from '../actions';
+import {
+  loginUser,
+  authUser,
+  updateDateField,
+  toggleDepartDateModal,
+  toggleReturnDateModal
+} from '../actions';
 
 class RootLayer extends Component {
   constructor(props) {
@@ -44,7 +50,14 @@ class RootLayer extends Component {
   render() {
     const {
       departDateModalOpen,
-      returnDateModalOpen
+      returnDateModalOpen,
+      currentDate,
+      maxDate,
+      updateDateField,
+      toggleDepartDateModal,
+      toggleReturnDateModal,
+      departDate,
+      returnDate
     } = this.props;
     return (
         <Drawer
@@ -64,9 +77,17 @@ class RootLayer extends Component {
           position={"center"}
           entry={'bottom'}
           animationDuration={400}
-          swipeToClose={true}
+          swipeToClose={false}
+          backdropPressToClose={false}
         >
-          <DateModal />
+          <DateModal
+            currentDate={currentDate}
+            maxDate={maxDate}
+            dateSelection={departDate}
+            updateDateField={updateDateField.bind(this)}
+            toggleModal={toggleDepartDateModal.bind(this)}
+            dateRef={'departDate'}
+          />
         </Modal>
 
         <Modal
@@ -75,9 +96,17 @@ class RootLayer extends Component {
           position={"center"}
           entry={'bottom'}
           animationDuration={400}
-          swipeToClose={true}
+          swipeToClose={false}
+          backdropPressToClose={false}
         >
-          <DateModal />
+          <DateModal
+            currentDate={currentDate}
+            maxDate={maxDate}
+            dateSelection={returnDate}
+            updateDateField={updateDateField.bind(this)}
+            toggleModal={toggleReturnDateModal.bind(this)}
+            dateRef={'returnDate'}
+          />
         </Modal>
 
         <Modal
@@ -140,7 +169,11 @@ const mapStateToProps = ({ auth, flightOptions }) => {
 
   const {
     departDateModalOpen,
-    returnDateModalOpen
+    returnDateModalOpen,
+    currentDate,
+    maxDate,
+    departDate,
+    returnDate
   } = flightOptions.datePreferences;
 
   return {
@@ -150,8 +183,21 @@ const mapStateToProps = ({ auth, flightOptions }) => {
     loading,
     sessionID,
     departDateModalOpen,
-    returnDateModalOpen
+    returnDateModalOpen,
+    currentDate,
+    maxDate,
+    departDate,
+    returnDate
   };
 };
 
-export default connect(mapStateToProps, { loginUser, authUser })(RootLayer);
+export default connect(
+  mapStateToProps,
+  {
+    loginUser,
+    authUser,
+    updateDateField,
+    toggleDepartDateModal,
+    toggleReturnDateModal
+  }
+)(RootLayer);

@@ -5,11 +5,20 @@ import {
   UPDATE_DATE_FIELD
 } from '../../actions/types';
 
+const maxDate = () => {
+  const currentDate = new Date();
+  currentDate.setMonth(currentDate.getMonth() + 11);
+  currentDate.setDate(currentDate.getDate() + 26);
+  return currentDate;
+};
+
 const INITIAL_STATE = {
   departDateModalOpen: false,
   returnDateModalOpen: false,
-  departDate: '',
-  returnDate: '',
+  maxDate: maxDate(),
+  currentDate: new Date(),
+  departDate: new Date(),
+  returnDate: new Date(),
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -23,12 +32,12 @@ export default (state = INITIAL_STATE, action) => {
     case TOGGLE_DEPART_DATE_MODAL:
       return {
         ...state,
-        departDateModalOpen: !state.departDateModalOpen
+        departDateModalOpen: action.payload
       }
     case TOGGLE_RETURN_DATE_MODAL:
       return {
         ...state,
-        returnDateModalOpen: !state.returnDateModalOpen
+        returnDateModalOpen: action.payload
       }
     case UPDATE_DATE_FIELD:
       return {
