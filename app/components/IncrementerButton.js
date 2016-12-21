@@ -4,41 +4,33 @@ import Icon from './Icon';
 import Assets from '../images/Assets';
 
 class IncrementerButton extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 0,
-      textStyle: text
-    };
+  textState(count) {
+    const textStyle = count > 0 ? textDark : text;
+    return textStyle;
   }
 
-  decrementCount() {
-    if (this.state.count === 1) {
-      this.setState({ textStyle: text });
-      this.setState({ count: --this.state.count });
-    } else if (this.state.count > 0) {
-      this.setState({ count: --this.state.count });
-    }
+  decrement() {
+    this.props.resetPassengerWarning();
+    this.props.onDecrement();
   }
 
-  incrementCount() {
-    if (this.state.count === 0) {
-      this.setState({ textStyle: textDark });
-    }
-    this.setState({ count: ++this.state.count });
+  increment() {
+    this.props.resetPassengerWarning();
+    this.props.onIncrement();
   }
 
   render() {
+    const { count } = this.props;
     return (
       <View style={container}>
-        <TouchableOpacity onPress={this.decrementCount.bind(this)}>
+        <TouchableOpacity onPress={() => this.decrement()}>
           <Icon
             style={icon}
             source={Assets.minus}
           />
         </TouchableOpacity>
-        <Text style={this.state.textStyle}>{this.state.count}</Text>
-        <TouchableOpacity onPress={this.incrementCount.bind(this)}>
+        <Text style={this.textState(count)}>{count}</Text>
+        <TouchableOpacity onPress={() => this.increment()}>
           <Icon
             style={icon}
             source={Assets.plus}
@@ -65,7 +57,7 @@ const styles = StyleSheet.create({
   textDark: {
     fontFamily: 'AvenirNext-Medium',
     fontWeight: '500',
-    color: '#afafaf',
+    color: '#313131',
     fontSize: 14
   },
   icon: {

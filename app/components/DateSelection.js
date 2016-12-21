@@ -24,7 +24,7 @@ class DateSelection extends Component {
   isDateSet(selected, date, placeholder) {
     if (selected) {
       return (
-        <CustomText size={14} fontWeight={'600'} color={'#313131'}>
+        <CustomText size={14} fontWeight={'500'} color={'#313131'}>
           {date.toLocaleDateString()}
         </CustomText>
       )

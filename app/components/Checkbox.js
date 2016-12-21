@@ -4,7 +4,7 @@ import Assets from '../images/Assets';
 import Icon from './Icon';
 
 const Checkbox = (props) => {
-  const checked = props.checked ? Assets.check : Assets.checkEmpty;
+  const checked = props.checked ? require('image!check') : require('image!check_empty');
 
   return (
     <TouchableWithoutFeedback onPress={() => props.handleEvent()}>

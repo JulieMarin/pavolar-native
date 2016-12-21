@@ -14,9 +14,9 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case TOGGLE_TRAVEL_MODE:
       if (action.payload == 'OneWay') {
-        return { ...state, destinationMode: 'RoundTrip'}
-      } else {
         return { ...state, destinationMode: 'OneWay'}
+      } else {
+        return { ...state, destinationMode: 'RoundTrip'}
       }
     case SEARCH_BY_AIRLINE:
       return {

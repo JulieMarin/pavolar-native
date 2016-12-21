@@ -1,73 +1,63 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Text, StyleSheet } from 'react-native';
+import CustomText from './CustomText';
 import CardContainer from './CardContainer';
 import CardSlat from './CardSlat';
 import Checkbox from './Checkbox';
+import {
+  toggleSearchByAirline,
+  toggleSearchDirectFlights
+} from '../actions';
 
 
 class FlightPreference extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      airlineChecked: false,
-      directFlightsChecked: false,
-      firstOptionTextStyle: text,
-      secondOptionTextStyle: text
-    };
-  }
-
-  airlineCheckedToggle() {
-    this.setState({
-      airlineChecked: !this.state.airlineChecked,
-      firstOptionTextStyle: this.state.airlineChecked ? text : darkText
-    });
-  }
-
-  directFlightsCheckedToggle() {
-    this.setState({
-      directFlightsChecked: !this.state.directFlightsChecked,
-      secondOptionTextStyle: this.state.directFlightsChecked ? text : darkText
-    });
-  }
-
   render() {
+    const {
+      toggleSearchByAirline,
+      toggleSearchDirectFlights,
+      searchByAirline,
+      searchDirectFlightsOnly
+    } = this.props;
     return (
       <CardContainer>
         <CardSlat style={container}>
           <Checkbox
-            checked={this.state.airlineChecked}
-            handleEvent={this.airlineCheckedToggle.bind(this)}
+            checked={searchByAirline}
+            handleEvent={toggleSearchByAirline.bind(this)}
           />
-          <Text style={this.state.firstOptionTextStyle}>SEARCH BY AIRLINE</Text>
+          <CustomText style={[styles.text, textStyle(searchByAirline)]} fontWeight={'500'} size={14}>
+            SEARCH BY AIRLINE
+          </CustomText>
         </CardSlat>
         <CardSlat style={container}>
           <Checkbox
-            checked={this.state.directFlightsChecked}
-            handleEvent={this.directFlightsCheckedToggle.bind(this)}
+            checked={searchDirectFlightsOnly}
+            handleEvent={toggleSearchDirectFlights.bind(this)}
           />
-          <Text style={this.state.secondOptionTextStyle}>SEARCH DIRECT FLIGHTS ONLY</Text>
+          <CustomText style={[styles.text, textStyle(searchDirectFlightsOnly)]} fontWeight={'500'} size={14}>
+            SEARCH DIRECT FLIGHTS ONLY
+          </CustomText>
         </CardSlat>
       </CardContainer>
     );
   }
 }
 
+const textStyle = (checked) => {
+  if(checked) {
+      return {
+        color: '#313131'
+      }
+  } else {
+      return {
+        color: '#afafaf'
+      }
+  }
+}
+
 const styles = StyleSheet.create({
   text: {
-    flex: 1,
-    fontFamily: 'AvenirNext-Medium',
-    fontWeight: '500',
-    color: '#afafaf',
-    fontSize: 14,
-    marginLeft: 9,
-    marginRight: 9,
-  },
-  darkText: {
-    flex: 1,
-    fontFamily: 'AvenirNext-Medium',
-    fontWeight: '500',
-    color: '#313131',
-    fontSize: 14,
     marginLeft: 9,
     marginRight: 9,
   },
@@ -78,4 +68,22 @@ const styles = StyleSheet.create({
 
 const { darkText, text, container } = styles;
 
-export default FlightPreference;
+const mapStateToProps = ({ flightOptions }) => {
+  const {
+    searchByAirline,
+    searchDirectFlightsOnly
+  } = flightOptions.travelPreferences;
+
+  return {
+    searchByAirline,
+    searchDirectFlightsOnly
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {
+    toggleSearchByAirline,
+    toggleSearchDirectFlights
+  }
+)(FlightPreference);

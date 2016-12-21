@@ -4,6 +4,10 @@ export const extractAirportCode = (string) => {
 };
 
 export const extractCity = (string) => {
-  const regExp = /^([\w\s\d]+)\s\//;
-  return regExp.exec(string);
+  if (string.indexOf('/') !== -1) {
+    const regExp = /^([\w\s\d]+)\s\//;
+    return regExp.exec(string);
+  } else {
+    return string;
+  }
 };

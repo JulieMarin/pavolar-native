@@ -77,7 +77,7 @@ class RootLayer extends Component {
           position={"center"}
           entry={'bottom'}
           animationDuration={400}
-          swipeToClose={false}
+          swipeToClose={true}
           backdropPressToClose={false}
         >
           <DateModal
@@ -99,7 +99,7 @@ class RootLayer extends Component {
           position={"center"}
           entry={'bottom'}
           animationDuration={400}
-          swipeToClose={false}
+          swipeToClose={true}
           backdropPressToClose={false}
         >
           <DateModal
