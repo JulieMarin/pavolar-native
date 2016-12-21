@@ -3,6 +3,26 @@ import { View, Text, StyleSheet } from 'react-native';
 import { Button } from './common';
 
 const Tab = (props) => {
+  const setModeAndClearInput = () => {
+    props.action('OneWay');
+    props.updateLocField({
+      prop: 'airportReturnCode',
+      value: ''
+    });
+    props.updateLocField({
+      prop: 'airportReturnLocation',
+      value: ''
+    });
+    props.updateDateField({
+      prop: 'returnDate',
+      value: new Date(),
+    });
+    props.updateDateField({
+      prop: 'returnDateSelected',
+      value: false
+    });
+  };
+
   return (
     <View style={container}>
       <Button
@@ -12,7 +32,7 @@ const Tab = (props) => {
         width={170}
       />
       <Button
-        onPress={() => props.action('OneWay')}
+        onPress={() => setModeAndClearInput()}
         text={'ONE WAY'}
         backgroundColor={'rgba(255, 0, 0, 0)'}
         borderColor={'#ffffff'}

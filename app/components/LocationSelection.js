@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, ActivityIndicator } from 'react-native';
+import { StyleSheet, ActivityIndicator, View, TouchableOpacity } from 'react-native';
 import CustomText from './CustomText';
 import CardContainer from './CardContainer';
 import CardSlat from './CardSlat';
@@ -9,13 +9,27 @@ import AutoCompleteInput from './AutoCompleteInput';
 import {
   updateLocField,
   cullAirlineSearchResults,
-  populateAutocomplete
+  populateAutocomplete,
+  swapLocations,
+  updateDateField
 } from '../actions';
 
 
 class LocationSelection extends Component {
   constructor(props) {
     super(props);
+  }
+
+  renderSwapButton(mode) {
+    if (mode == 'RoundTrip') {
+      return (
+        <TouchableOpacity style={styles.swap} onPress={() => this.props.swapLocations()}>
+          <View>
+              <Icon size={34} source={require('image!change')} />
+          </View>
+        </TouchableOpacity>
+      );
+    }
   }
 
   flightIcon(airlineCode, image) {
@@ -47,7 +61,8 @@ class LocationSelection extends Component {
       searchLoading,
       updateLocField,
       cullAirlineSearchResults,
-      populateAutocomplete
+      populateAutocomplete,
+      destinationMode
     } = this.props;
     return (
       <CardContainer>
@@ -75,28 +90,38 @@ class LocationSelection extends Component {
           />
         </CardSlat>
 
-        <CardSlat style={{ zIndex: 1 }}>
-          {this.flightIcon(airportReturnCode, require('image!going_to'))}
-          <AutoCompleteInput
-            dataContainer={returnData}
-            defaultInputValue={airportReturnLocation}
-            placeholder={'GOING TO'}
+        <View style={greyedOut(destinationMode)}>
+          <CardSlat style={{ zIndex: 1 }}>
+            {this.flightIcon(airportReturnCode, require('image!going_to'))}
+            <AutoCompleteInput
+              dataContainer={returnData}
+              defaultInputValue={airportReturnLocation}
+              placeholder={'GOING TO'}
+              editable={destinationMode !== 'OneWay'}
 
-            updateLocField ={updateLocField.bind(this)}
-            cullAirlineSearchResults = {cullAirlineSearchResults.bind(this)}
-            clearData = {populateAutocomplete.bind(this)}
+              updateLocField ={updateLocField.bind(this)}
+              cullAirlineSearchResults = {cullAirlineSearchResults.bind(this)}
+              clearData = {populateAutocomplete.bind(this)}
 
-            keyRefs={{
-              data: 'returnData',
-              airportCode: 'airportReturnCode',
-              airportLocation: 'airportReturnLocation'
-            }}
-          />
-        </CardSlat>
+              keyRefs={{
+                data: 'returnData',
+                airportCode: 'airportReturnCode',
+                airportLocation: 'airportReturnLocation'
+              }}
+            />
+          </CardSlat>
+        </View>
+
+        {this.renderSwapButton(destinationMode)}
+
       </CardContainer>
     );
   }
 }
+
+const greyedOut = (mode) => {
+  return (mode == 'OneWay') ? styles.oneWayActive : styles.roundTripActive
+};
 
 const styles = StyleSheet.create({
   text: {
@@ -117,6 +142,18 @@ const styles = StyleSheet.create({
     marginLeft: 9,
     marginRight: 9,
   },
+  swap: {
+    position: 'absolute',
+    top: 36,
+    right:30,
+    zIndex: 1
+  },
+  roundTripActive: {
+    backgroundColor: '#ffffff'
+  },
+  oneWayActive: {
+    backgroundColor: '#c3c3c3'
+  }
 });
 
 const { icon } = styles;
@@ -135,6 +172,8 @@ const mapStateToProps = ({ flightOptions }) => {
     returnData,
   } = flightOptions.locSearchResults;
 
+  const { destinationMode } = flightOptions.travelPreferences;
+
   return {
     airportDepartCode,
     airportReturnCode,
@@ -142,7 +181,8 @@ const mapStateToProps = ({ flightOptions }) => {
     airportReturnLocation,
     departData,
     returnData,
-    searchLoading
+    searchLoading,
+    destinationMode
    }
 }
 
@@ -151,6 +191,8 @@ export default connect(
   {
     updateLocField,
     cullAirlineSearchResults,
-    populateAutocomplete
+    populateAutocomplete,
+    swapLocations,
+    updateDateField
   }
 )(LocationSelection);

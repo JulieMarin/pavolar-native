@@ -61,11 +61,13 @@ class AutoCompleteInput extends Component{
       dataContainer,
       defaultInputValue,
       placeholder,
+      editable
     } = this.props;
 
     return (
       <View style={styles.container}>
         <Autocomplete
+          editable={editable}
           style={styles.text}
           placeholderTextColor={'#a3a3a3'}
           autoCapitalize={'characters'}

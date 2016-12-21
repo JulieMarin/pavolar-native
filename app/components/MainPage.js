@@ -20,7 +20,7 @@ import DateSelection from './DateSelection';
 import PassengerSelection from './PassengerSelection';
 import SearchButton from './SearchButton';
 import FlightPreference from './FlightPreference';
-import { toggleTravelMode } from '../actions';
+import { toggleTravelMode, updateLocField, updateDateField } from '../actions';
 
 class MainPage extends Component {
   constructor(props) {
@@ -39,7 +39,11 @@ class MainPage extends Component {
         <ScrollView style={{ flex: 1 }} keyboardShouldPersistTaps={true}>
           <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
             <View>
-              <Tab action={this.props.toggleTravelMode.bind(this)} />
+              <Tab
+                action={this.props.toggleTravelMode.bind(this)}
+                updateLocField={this.props.updateLocField.bind(this)}
+                updateDateField={this.props.updateDateField.bind(this)}
+              />
               <View style={{ zIndex: 100 }}>
                 <LocationSelection />
               </View>
@@ -90,4 +94,4 @@ const mapStateToProps = ({ flightOptions }) => {
   return { destinationMode };
 };
 
-export default connect(mapStateToProps, { toggleTravelMode })(MainPage);
+export default connect(mapStateToProps, { toggleTravelMode, updateLocField, updateDateField })(MainPage);

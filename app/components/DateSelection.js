@@ -44,7 +44,8 @@ class DateSelection extends Component {
       departDate,
       returnDate,
       departDateSelected,
-      returnDateSelected
+      returnDateSelected,
+      destinationMode
 
     } = this.props;
     return (
@@ -60,20 +61,28 @@ class DateSelection extends Component {
           </TouchableOpacity>
         </CardSlat>
 
-        <CardSlat>
-          <Icon style={icon} source={Assets.returnDate} />
-          <TouchableOpacity
-            onPress={() => toggleReturnDateModal(true)}
-            style={styles.modalButton}
-          >
-            {this.isDateSet(returnDateSelected, returnDate, 'RETURN DATE')}
-          </TouchableOpacity>
-        </CardSlat>
+        <View style={greyedOut(destinationMode)}>
+          <CardSlat>
+            <Icon style={icon} source={Assets.returnDate} />
+            <TouchableOpacity
+              disabled={destinationMode == 'OneWay'}
+              onPress={() => toggleReturnDateModal(true)}
+              style={styles.modalButton}
+              activeOpacity={0.2}
+            >
+              {this.isDateSet(returnDateSelected, returnDate, 'RETURN DATE')}
+            </TouchableOpacity>
+          </CardSlat>
+        </View>
 
       </CardContainer>
     );
   }
 }
+
+const greyedOut = (mode) => {
+  return (mode == 'OneWay') ? styles.oneWayActive : styles.roundTripActive
+};
 
 const styles = StyleSheet.create({
   text: {
@@ -91,6 +100,12 @@ const styles = StyleSheet.create({
   },
   modalButton: {
     marginLeft: 9
+  },
+  roundTripActive: {
+    backgroundColor: '#ffffff'
+  },
+  oneWayActive: {
+    backgroundColor: '#adadad'
   }
 });
 
@@ -102,13 +117,16 @@ const mapStateToProps = ({ flightOptions }) => {
     returnDate,
     departDateSelected,
     returnDateSelected
-  } = flightOptions.datePreferences
+  } = flightOptions.datePreferences;
+
+  const { destinationMode } = flightOptions.travelPreferences;
 
   return {
     departDate,
     returnDate,
     departDateSelected,
-    returnDateSelected
+    returnDateSelected,
+    destinationMode
   }
 };
 
