@@ -2,16 +2,20 @@ import {
   LOGIN_USER_ACTIVITY,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
+  TOGGLE_SIGN_IN_MENU,
 } from './types';
 import Keychain from 'react-native-keychain';
 import { authenticateUser } from '../services';
+
+export const toggleSignInMenu = () => {
+  return { type: TOGGLE_SIGN_IN_MENU }
+};
 
 export const authUser = (params) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER_ACTIVITY })
     authenticateUser(params)
       .then(response => {
-        console.log(response)
         if (response.data.success) {
           _resetCredentials();
           _persistCredentials(params);

@@ -39,7 +39,7 @@ const BookingTravelHeader = (props) => {
           <CustomText size={11} fontWeight={'600'} color={'#3e3eac'}>
             {props.arrivalAirport}
           </CustomText>
-          <CustomText size={11} fontWeight={'500'} color={'#3e3eac'}>
+          <CustomText size={11} fontWeights={'500'} color={'#3e3eac'}>
             {props.arrivalLocation}
           </CustomText>
         </ColumnWrapper>

@@ -102,10 +102,10 @@ const styles = StyleSheet.create({
     marginLeft: 9
   },
   roundTripActive: {
-    backgroundColor: '#ffffff'
+    opacity: 1.0
   },
   oneWayActive: {
-    backgroundColor: '#adadad'
+    opacity: 0.325
   }
 });
 

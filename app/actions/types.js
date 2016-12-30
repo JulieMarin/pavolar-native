@@ -2,6 +2,10 @@
 export const LOGIN_USER_ACTIVITY = 'LOGIN_USER_ACTIVITY';
 export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
 export const LOGIN_USER_FAIL = 'LOGIN_USER_FAIL';
+export const TOGGLE_SIGN_IN_MENU = 'TOGGLE_SIGN_IN_MENU';
+
+// Search Results Definitions
+export const BEGIN_FLIGHT_SEARCH = 'BEGIN_FLIGHT_SEARCH';
 
 // Date Preferences Definitions
 export const SWAP_DATES = 'SWAP_DATES';

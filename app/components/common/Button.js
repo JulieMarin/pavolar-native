@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableHighlight } from 'react-native';
 
 const Button = ({
     onPress,
@@ -8,18 +8,20 @@ const Button = ({
     borderColor,
     borderWidth,
     width,
+    underlayColor
 }) => {
   const { buttonStyle, textStyle } = styles;
 
   return (
-    <TouchableOpacity
+    <TouchableHighlight
       onPress={onPress}
       style={[buttonStyle, { backgroundColor, borderColor, borderWidth, width }]}
+      underlayColor={underlayColor}
     >
       <Text style={textStyle}>
         {text}
       </Text>
-    </TouchableOpacity>
+    </TouchableHighlight>
   );
 };
 

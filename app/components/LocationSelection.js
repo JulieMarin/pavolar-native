@@ -16,22 +16,6 @@ import {
 
 
 class LocationSelection extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  renderSwapButton(mode) {
-    if (mode == 'RoundTrip') {
-      return (
-        <TouchableOpacity style={styles.swap} onPress={() => this.props.swapLocations()}>
-          <View>
-              <Icon size={34} source={require('image!change')} />
-          </View>
-        </TouchableOpacity>
-      );
-    }
-  }
-
   flightIcon(airlineCode, image) {
     if(airlineCode.length == 0) {
       return (
@@ -112,7 +96,15 @@ class LocationSelection extends Component {
           </CardSlat>
         </View>
 
-        {this.renderSwapButton(destinationMode)}
+        <TouchableOpacity
+            style={styles.swap}
+            onPress={() => this.props.swapLocations()}
+            disabled={destinationMode == 'OneWay'}
+          >
+          <View style={greyedOut(destinationMode)}>
+              <Icon size={34} source={require('image!change')} />
+          </View>
+        </TouchableOpacity>
 
       </CardContainer>
     );
@@ -149,10 +141,10 @@ const styles = StyleSheet.create({
     zIndex: 1
   },
   roundTripActive: {
-    backgroundColor: '#ffffff'
+    opacity: 1
   },
   oneWayActive: {
-    backgroundColor: '#c3c3c3'
+    opacity: 0.325
   }
 });
 

@@ -30,6 +30,7 @@ const Tab = (props) => {
         text={'ROUND TRIP'}
         backgroundColor={'#0172fc'}
         width={170}
+        underlayColor={'#6aadff'}
       />
       <Button
         onPress={() => setModeAndClearInput()}
@@ -38,6 +39,7 @@ const Tab = (props) => {
         borderColor={'#ffffff'}
         borderWidth={1}
         width={170}
+        underlayColor={'rgba(255, 255, 255, 0.4)'}
       />
     </View>
   );

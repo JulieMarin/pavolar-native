@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { TouchableHighlight, StyleSheet, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import {
+  loginUser,
+  authUser,
+  toggleSignInMenu
+} from '../actions';
 
 class SearchButton extends Component {
-  handleTouch() {
-    Actions.bookingSearchResults({ lol: 'test', fart: 'box' });
+  initiateSearch() {
+    Actions.bookingSearchResults();
   }
 
   render() {
     return (
       <TouchableHighlight
         style={container}
-        onPress={this.handleTouch}
+        onPress={this.initiateSearch}
         underlayColor={'#d6474c'}
       >
         <Text style={text}>SEARCH</Text>

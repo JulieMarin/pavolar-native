@@ -8,7 +8,7 @@ class DrawerMenu extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <DrawerMenuButton handleEvent={this.props.handleEvent} fontWeight={'700'} text={'SIGN IN'} />
+        <DrawerMenuButton handleEvent={() => this.props.handleEvent()} fontWeight={'700'} text={'SIGN IN'} />
         <DrawerMenuButton text={'CUSTOMER SUPPORT'} />
         <DrawerMenuButton text={'TERMS AND CONDITIONS'} />
         <CallButton />

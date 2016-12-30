@@ -13,7 +13,8 @@ import {
   authUser,
   updateDateField,
   toggleDepartDateModal,
-  toggleReturnDateModal
+  toggleReturnDateModal,
+  toggleSignInMenu
 } from '../actions';
 
 class RootLayer extends Component {
@@ -29,7 +30,7 @@ class RootLayer extends Component {
   openDrawer() {
     StatusBar.setHidden(true, 'slide');
     this.setState({
-      drawerContent: <DrawerMenu handleEvent={this.toggleSignIn.bind(this)}/>
+      drawerContent: <DrawerMenu handleEvent={this.props.toggleSignInMenu.bind(this)}/>
     });
   }
 
@@ -57,8 +58,10 @@ class RootLayer extends Component {
       toggleDepartDateModal,
       toggleReturnDateModal,
       departDate,
-      returnDate
+      returnDate,
+      signInOpen
     } = this.props;
+    console.log(signInOpen);
     return (
         <Drawer
           open={this.state.drawerOpen}
@@ -126,10 +129,12 @@ class RootLayer extends Component {
         </Modal>
 
         <Modal
-          isOpen={false}
+          isOpen={signInOpen}
           position={"center"}
           entry={'bottom'}
           animationDuration={400}
+          swipeToClose={false}
+          backdropPressToClose={false}
         >
           <SignInMenu />
         </Modal>
@@ -171,7 +176,8 @@ const mapStateToProps = ({ auth, flightOptions }) => {
     password,
     statusMessage,
     loading,
-    sessionID
+    sessionID,
+    signInOpen
   } = auth;
 
   const {
@@ -194,7 +200,8 @@ const mapStateToProps = ({ auth, flightOptions }) => {
     currentDate,
     maxDate,
     departDate,
-    returnDate
+    returnDate,
+    signInOpen
   };
 };
 
@@ -205,6 +212,7 @@ export default connect(
     authUser,
     updateDateField,
     toggleDepartDateModal,
-    toggleReturnDateModal
+    toggleReturnDateModal,
+    toggleSignInMenu
   }
 )(RootLayer);

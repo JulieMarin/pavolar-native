@@ -11,25 +11,18 @@ import { RowLayout, ColumnLayout, CustomButton } from './common' ;
 import Icon from './Icon';
 import CustomText from './CustomText';
 import FormInput from './FormInput';
-import { loginUser, authUser } from '../actions';
+import {
+  loginUser,
+  authUser,
+  toggleSignInMenu
+} from '../actions';
 
 class SignInMenu extends Component {
   handleTouch() {
     const params = {
-      adults: 1,
       appID: 'NGUZ1NKZ69593J3L5AEXY30EEE07TXOBA5EXS93J',
       emailAddress: 'ali@alihamze.com',
       password: 'test',
-      children: 0,
-      departCode1: 'NYC',
-      departCode2: 'SAL',
-      departDate1: '08/01/2017',
-      departDate2: '08/05/2015',
-      destinationCode1: 'SAL',
-      destinationCode2: 'NYC',
-      infants: 0,
-      maxRecommendations: 2,
-      segments: 2,
     }
     this.props.authUser(params);
   }
@@ -54,11 +47,21 @@ class SignInMenu extends Component {
   }
 
   render() {
+    const {
+      email,
+      password,
+      statusMessage,
+      loading,
+      sessionID,
+      signInOpen,
+      toggleSignInMenu
+    } = this.props;
+
     return (
     <View style={styles.container}>
       <View style={styles.header}>
         <RowLayout style={{ justifyContent: 'space-between', alignItems: 'center' }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => toggleSignInMenu()}>
             <Icon size={13} source={require('image!close')}/>
           </TouchableOpacity>
 
@@ -76,7 +79,9 @@ class SignInMenu extends Component {
         </RowLayout>
       </View>
 
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView
+        style={{ flex: 1 }}
+      >
         <ColumnLayout>
           <FormInput
             autoFocus={true}
@@ -132,8 +137,28 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ auth }) => {
-  const { email, password, statusMessage, loading, sessionID } = auth;
-  return { email, password, statusMessage, loading, sessionID };
+  const {
+    email,
+    password,
+    statusMessage,
+    loading,
+    sessionID,
+    signInOpen
+  } = auth;
+
+  return {
+    email,
+    password,
+    statusMessage,
+    loading,
+    sessionID,
+    signInOpen
+  };
 };
 
-export default connect(mapStateToProps, { loginUser, authUser })(SignInMenu);
+export default connect(
+  mapStateToProps, {
+    loginUser,
+    authUser,
+    toggleSignInMenu
+  })(SignInMenu);

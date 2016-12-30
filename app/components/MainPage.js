@@ -35,7 +35,7 @@ class MainPage extends Component {
   render() {
     return (
       <View style={container}>
-        <Image style={backgroundImage} source={this.backgroundCycle()}>
+        <Image style={backgroundImage} source={require('image!bg_1')}>
         <ScrollView style={{ flex: 1 }} keyboardShouldPersistTaps={true}>
           <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
             <View>
