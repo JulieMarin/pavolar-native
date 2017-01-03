@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { TouchableHighlight, StyleSheet, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import {
@@ -7,17 +6,18 @@ import {
   authUser,
   toggleSignInMenu
 } from '../actions';
+import { searchForFlights } from '../services/searchForFlights';
 
 class SearchButton extends Component {
-  initiateSearch() {
-    Actions.bookingSearchResults();
-  }
-
   render() {
+    const {
+      packageParams,
+      values
+    } = this.props;
     return (
       <TouchableHighlight
         style={container}
-        onPress={this.initiateSearch}
+        onPress={() => packageParams(values)}
         underlayColor={'#d6474c'}
       >
         <Text style={text}>SEARCH</Text>

@@ -11,6 +11,12 @@ class APIRouter {
     })
   }
 
+  getSearchResults(params) {
+    return axios.get(this.rootURI + '/1/flights/search/search.json', {
+      params: params
+    })
+  }
+
   searchAirports(query) {
     return axios.get('https://api-cdn.pavolar.com/1/flights/airports/search.json', {
       params: {

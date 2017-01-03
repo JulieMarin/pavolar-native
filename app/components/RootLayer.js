@@ -8,6 +8,7 @@ import DrawerMenu from './DrawerMenu';
 import FilterMenu from './FilterMenu';
 import DateModal from './DateModal';
 import SignInMenu from './SignInMenu';
+import LoadingModal from './LoadingModal';
 import {
   loginUser,
   authUser,
@@ -137,6 +138,16 @@ class RootLayer extends Component {
           backdropPressToClose={false}
         >
           <SignInMenu />
+        </Modal>
+        <Modal
+          isOpen={false}
+          position={"center"}
+          entry={'bottom'}
+          animationDuration={400}
+          swipeToClose={true}
+          backdropPressToClose={true}
+        >
+          <LoadingModal />
         </Modal>
       </Drawer>
     );

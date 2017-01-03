@@ -20,7 +20,12 @@ import DateSelection from './DateSelection';
 import PassengerSelection from './PassengerSelection';
 import SearchButton from './SearchButton';
 import FlightPreference from './FlightPreference';
-import { toggleTravelMode, updateLocField, updateDateField } from '../actions';
+import {
+  toggleTravelMode,
+  updateLocField,
+  updateDateField,
+  packageParams
+} from '../actions';
 
 class MainPage extends Component {
   constructor(props) {
@@ -33,6 +38,11 @@ class MainPage extends Component {
   }
 
   render() {
+    const {
+      packageParams,
+      flightOptions
+    } = this.props;
+
     return (
       <View style={container}>
         <Image style={backgroundImage} source={require('image!bg_1')}>
@@ -52,7 +62,10 @@ class MainPage extends Component {
               </View>
               <PassengerSelection />
               <FlightPreference />
-              <SearchButton />
+              <SearchButton
+                packageParams={packageParams.bind(this)}
+                values={flightOptions}
+              />
             </View>
           </TouchableWithoutFeedback>
         </ScrollView>
@@ -87,11 +100,25 @@ const styles = StyleSheet.create({
   }
 });
 
-const { container, backgroundImage, logoStyle, navBar, statusBar } = styles;
+const {
+  container,
+  backgroundImage,
+  logoStyle,
+  navBar,
+  statusBar
+} = styles;
 
 const mapStateToProps = ({ flightOptions }) => {
-  const { destinationMode } = flightOptions.travelPreferences;
-  return { destinationMode };
+  return {
+    flightOptions
+  };
 };
 
-export default connect(mapStateToProps, { toggleTravelMode, updateLocField, updateDateField })(MainPage);
+export default connect(
+  mapStateToProps, {
+    toggleTravelMode,
+    updateLocField,
+    updateDateField,
+    packageParams
+  }
+)(MainPage);

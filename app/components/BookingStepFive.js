@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StatusBar, StyleSheet, ScrollView } from 'react-native';
 import { RowLayout, ColumnLayout, RoundedButton } from './common';
+import { LiteCreditCardInput } from "react-native-credit-card-input";
 import CustomText from './CustomText';
 import FormInput from './FormInput';
 import Checkbox from './Checkbox';
@@ -16,7 +17,9 @@ class BookingStepFive extends Component {
         <View style={styles.container}>
           <StatusBar barStyle={'light-content'} />
           <View style={styles.formContainer}>
-            <CardForm />
+            <View style={{ flex: 1, alignSelf: 'stretch', borderWidth: 1, borderColor: '#e5e5e5'}}>
+              <LiteCreditCardInput />
+            </View>
             <CustomText style={{ paddingTop: 10 }} size={12} color={'#bebebe'} >
               Please fill your debit or credit card number
             </CustomText>
