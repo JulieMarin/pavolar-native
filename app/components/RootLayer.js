@@ -15,7 +15,7 @@ import {
   updateDateField,
   toggleDepartDateModal,
   toggleReturnDateModal,
-  toggleSignInMenu
+  toggleSignInMenu,
 } from '../actions';
 
 class RootLayer extends Component {
@@ -60,7 +60,8 @@ class RootLayer extends Component {
       toggleReturnDateModal,
       departDate,
       returnDate,
-      signInOpen
+      signInOpen,
+      searchModalOpen
     } = this.props;
     console.log(signInOpen);
     return (
@@ -140,7 +141,7 @@ class RootLayer extends Component {
           <SignInMenu />
         </Modal>
         <Modal
-          isOpen={false}
+          isOpen={searchModalOpen}
           position={"center"}
           entry={'bottom'}
           animationDuration={400}
@@ -200,6 +201,10 @@ const mapStateToProps = ({ auth, searchParameters }) => {
     returnDate
   } = searchParameters.flights.datePreferences;
 
+  const {
+    searchModalOpen
+  } = searchParameters.flights.locSearchResults;
+
   return {
     email,
     password,
@@ -212,7 +217,8 @@ const mapStateToProps = ({ auth, searchParameters }) => {
     maxDate,
     departDate,
     returnDate,
-    signInOpen
+    signInOpen,
+    searchModalOpen
   };
 };
 
@@ -224,6 +230,6 @@ export default connect(
     updateDateField,
     toggleDepartDateModal,
     toggleReturnDateModal,
-    toggleSignInMenu
+    toggleSignInMenu,
   }
 )(RootLayer);

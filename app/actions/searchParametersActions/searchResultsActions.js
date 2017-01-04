@@ -1,4 +1,6 @@
 import {
+  TOGGLE_SEARCH_MODAL,
+  TOGGLE_FLIGHTS_SEARCH_LOADING,
   TOGGLE_SEARCH_LOADING,
   POPULATE_AUTOCOMPLETE
 } from '../types';
@@ -6,6 +8,14 @@ import { PavolarAPI } from '../../services/modules';
 
 export const toggleSearchLoading = () => {
   return { type: TOGGLE_SEARCH_LOADING }
+};
+
+export const toggleFlightsSearchLoading = () => {
+  return { type: TOGGLE_FLIGHTS_SEARCH_LOADING }
+};
+
+export const toggleSearchModal = () => {
+  return { type: TOGGLE_SEARCH_MODAL }
 };
 
 export const populateAutocomplete = ({prop, value}) => {

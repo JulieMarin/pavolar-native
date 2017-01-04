@@ -74,14 +74,14 @@ class LocationSelection extends Component {
           />
         </CardSlat>
 
-        <View style={greyedOut(destinationMode)}>
+        <View>
           <CardSlat style={{ zIndex: 1 }}>
             {this.flightIcon(airportReturnCode, require('image!going_to'))}
             <AutoCompleteInput
               dataContainer={returnData}
               defaultInputValue={airportReturnLocation}
               placeholder={'GOING TO'}
-              editable={destinationMode !== 'OneWay'}
+              // editable={destinationMode !== 'OneWay'}
 
               updateLocField ={updateLocField.bind(this)}
               cullAirlineSearchResults = {cullAirlineSearchResults.bind(this)}
@@ -99,9 +99,9 @@ class LocationSelection extends Component {
         <TouchableOpacity
             style={styles.swap}
             onPress={() => this.props.swapLocations()}
-            disabled={destinationMode == 'OneWay'}
+            // disabled={destinationMode == 'OneWay'}
           >
-          <View style={greyedOut(destinationMode)}>
+          <View>
               <Icon size={34} source={require('image!change')} />
           </View>
         </TouchableOpacity>

@@ -5,22 +5,22 @@ import { Button } from './common';
 const Tab = (props) => {
   const setModeAndClearInput = () => {
     props.action('OneWay');
-    props.updateLocField({
-      prop: 'airportReturnCode',
-      value: ''
-    });
-    props.updateLocField({
-      prop: 'airportReturnLocation',
-      value: ''
-    });
-    props.updateDateField({
-      prop: 'returnDate',
-      value: new Date(),
-    });
-    props.updateDateField({
-      prop: 'returnDateSelected',
-      value: false
-    });
+    // props.updateLocField({
+    //   prop: 'airportReturnCode',
+    //   value: ''
+    // });
+    // props.updateLocField({
+    //   prop: 'airportReturnLocation',
+    //   value: ''
+    // });
+    // props.updateDateField({
+    //   prop: 'returnDate',
+    //   value: new Date(),
+    // });
+    // props.updateDateField({
+    //   prop: 'returnDateSelected',
+    //   value: false
+    // });
   };
 
   return (

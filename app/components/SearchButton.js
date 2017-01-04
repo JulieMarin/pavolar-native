@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { TouchableHighlight, StyleSheet, Text } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 import {
   loginUser,
   authUser,
@@ -10,14 +9,11 @@ import { searchForFlights } from '../services/searchForFlights';
 
 class SearchButton extends Component {
   render() {
-    const {
-      packageParams,
-      values
-    } = this.props;
+    const { beginFlightSearch } = this.props;
     return (
       <TouchableHighlight
         style={container}
-        onPress={() => packageParams(values)}
+        onPress={() => beginFlightSearch()}
         underlayColor={'#d6474c'}
       >
         <Text style={text}>SEARCH</Text>

@@ -24,7 +24,8 @@ import {
   toggleTravelMode,
   updateLocField,
   updateDateField,
-  packageParams
+  packageParams,
+  toggleSearchModal
 } from '../actions';
 
 class MainPage extends Component {
@@ -33,12 +34,18 @@ class MainPage extends Component {
 
   }
 
-  backgroundCycle() {
-    return backgroundAssets.getRandomBg();
+  beginFlightSearch() {
+    const {
+      flights,
+      packageParams
+    } = this.props;
+
+    packageParams(flights);
   }
 
   render() {
     const {
+      toggleSearchModal,
       packageParams,
       flights
     } = this.props;
@@ -63,8 +70,7 @@ class MainPage extends Component {
               <PassengerSelection />
               <FlightPreference />
               <SearchButton
-                packageParams={packageParams.bind(this)}
-                values={flights}
+                beginFlightSearch={this.beginFlightSearch.bind(this)}
               />
             </View>
           </TouchableWithoutFeedback>
@@ -109,7 +115,7 @@ const {
 } = styles;
 
 const mapStateToProps = ({ searchParameters }) => {
-  const { flights } = searchParameters.flights;
+  const { flights } = searchParameters;
 
   return {
     flights
@@ -121,6 +127,7 @@ export default connect(
     toggleTravelMode,
     updateLocField,
     updateDateField,
-    packageParams
+    packageParams,
+    toggleSearchModal
   }
 )(MainPage);

@@ -1,7 +1,7 @@
 import CryptoJS from "crypto-js";
 import base64 from 'base-64';
 
-function _customEncodeURIComponent(URI) {
+export function _customEncodeURIComponent(URI) {
   return encodeURIComponent(URI).replace(/'/g, "%27");
 }
 
