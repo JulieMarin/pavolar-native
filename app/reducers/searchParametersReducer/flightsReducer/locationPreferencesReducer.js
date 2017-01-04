@@ -1,7 +1,7 @@
 import {
   SWAP_LOCATIONS,
   UPDATE_LOCATION_FIELD,
-} from '../../actions/types';
+} from '../../../actions/types';
 
 const INITIAL_STATE = {
   airportDepartCode: '',

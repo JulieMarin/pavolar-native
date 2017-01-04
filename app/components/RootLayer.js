@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ auth, flightOptions }) => {
+const mapStateToProps = ({ auth, searchParameters }) => {
   const {
     email,
     password,
@@ -198,7 +198,7 @@ const mapStateToProps = ({ auth, flightOptions }) => {
     maxDate,
     departDate,
     returnDate
-  } = flightOptions.datePreferences;
+  } = searchParameters.flights.datePreferences;
 
   return {
     email,

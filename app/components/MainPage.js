@@ -40,7 +40,7 @@ class MainPage extends Component {
   render() {
     const {
       packageParams,
-      flightOptions
+      flights
     } = this.props;
 
     return (
@@ -64,7 +64,7 @@ class MainPage extends Component {
               <FlightPreference />
               <SearchButton
                 packageParams={packageParams.bind(this)}
-                values={flightOptions}
+                values={flights}
               />
             </View>
           </TouchableWithoutFeedback>
@@ -108,9 +108,11 @@ const {
   statusBar
 } = styles;
 
-const mapStateToProps = ({ flightOptions }) => {
+const mapStateToProps = ({ searchParameters }) => {
+  const { flights } = searchParameters.flights;
+
   return {
-    flightOptions
+    flights
   };
 };
 

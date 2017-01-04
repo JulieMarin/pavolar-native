@@ -111,15 +111,15 @@ const styles = StyleSheet.create({
 
 const { text, icon } = styles;
 
-const mapStateToProps = ({ flightOptions }) => {
+const mapStateToProps = ({ searchParameters }) => {
   const {
     departDate,
     returnDate,
     departDateSelected,
     returnDateSelected
-  } = flightOptions.datePreferences;
+  } = searchParameters.flights.datePreferences;
 
-  const { destinationMode } = flightOptions.travelPreferences;
+  const { destinationMode } = searchParameters.flights.travelPreferences;
 
   return {
     departDate,

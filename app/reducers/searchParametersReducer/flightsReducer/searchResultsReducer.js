@@ -1,7 +1,7 @@
 import {
   TOGGLE_SEARCH_LOADING,
   POPULATE_AUTOCOMPLETE
-} from '../../actions/types';
+} from '../../../actions/types';
 
 const INITIAL_STATE = {
   searchLoading: false,

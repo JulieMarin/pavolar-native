@@ -2,7 +2,7 @@ import {
   TOGGLE_TRAVEL_MODE,
   SEARCH_BY_AIRLINE,
   SEARCH_DIRECT_FLIGHTS
-} from '../../actions/types';
+} from '../../../actions/types';
 
 const INITIAL_STATE = {
   destinationMode: 'RoundTrip',

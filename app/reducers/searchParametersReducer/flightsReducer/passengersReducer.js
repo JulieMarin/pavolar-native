@@ -7,7 +7,7 @@ import {
   INCREMENT_INFANT_COUNT,
   DECREMENT_INFANT_COUNT,
   RESET_PASSENGER_WARNING
-} from '../../actions/types';
+} from '../../../actions/types';
 
 const INITIAL_STATE = {
   adultCount: 0,

@@ -124,13 +124,13 @@ const styles = StyleSheet.create({
 
 const { text, subText, icon } = styles;
 
-const mapStateToProps = ({ flightOptions }) => {
+const mapStateToProps = ({ searchParameters }) => {
   const {
     adultCount,
     childCount,
     infantCount,
     combinationError
-  } = flightOptions.passengers;
+  } = searchParameters.flights.passengers;
 
   return {
     adultCount,

@@ -150,21 +150,21 @@ const styles = StyleSheet.create({
 
 const { icon } = styles;
 
-const mapStateToProps = ({ flightOptions }) => {
+const mapStateToProps = ({ searchParameters }) => {
   const {
     airportDepartCode,
     airportReturnCode,
     airportDepartLocation,
     airportReturnLocation,
-  } = flightOptions.locationPreferences;
+  } = searchParameters.flights.locationPreferences;
 
   const {
     searchLoading,
     departData,
     returnData,
-  } = flightOptions.locSearchResults;
+  } = searchParameters.flights.locSearchResults;
 
-  const { destinationMode } = flightOptions.travelPreferences;
+  const { destinationMode } = searchParameters.flights.travelPreferences;
 
   return {
     airportDepartCode,

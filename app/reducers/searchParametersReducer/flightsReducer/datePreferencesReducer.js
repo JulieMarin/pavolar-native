@@ -3,7 +3,7 @@ import {
   TOGGLE_DEPART_DATE_MODAL,
   TOGGLE_RETURN_DATE_MODAL,
   UPDATE_DATE_FIELD
-} from '../../actions/types';
+} from '../../../actions/types';
 
 const maxDate = () => {
   const currentDate = new Date();

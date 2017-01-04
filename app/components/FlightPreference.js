@@ -68,11 +68,11 @@ const styles = StyleSheet.create({
 
 const { darkText, text, container } = styles;
 
-const mapStateToProps = ({ flightOptions }) => {
+const mapStateToProps = ({ searchParameters }) => {
   const {
     searchByAirline,
     searchDirectFlightsOnly
-  } = flightOptions.travelPreferences;
+  } = searchParameters.flights.travelPreferences;
 
   return {
     searchByAirline,

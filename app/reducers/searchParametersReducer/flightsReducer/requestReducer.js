@@ -1,7 +1,7 @@
 import {
   ONE_WAY_ACTIVE,
   ROUND_TRIP_ACTIVE
-} from '../../actions/types';
+} from '../../../actions/types';
 
 const INITIAL_STATE = {
   params: {}
