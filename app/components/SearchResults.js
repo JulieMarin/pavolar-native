@@ -12,23 +12,44 @@ class SearchResults extends Component {
   }
 
   render() {
+    const {
+      destinationMode,
+      totalPrice,
+      departLocation,
+      arriveLocation,
+      departAirportCode,
+      arriveAirportCode,
+      departTime1,
+      departTime2,
+      departTime3,
+      departTime4,
+      arriveTime1,
+      arriveTime2,
+      arriveTime3,
+      arriveTime4,
+      airlineCode1,
+      airlineCode2,
+      airlineCode3,
+      airlineCode4
+    } = this.props;
     return (
       <View style={styles.container}>
         <ResultHeader
-          leftText={'Round Trip'}
-          rightText={'880'}
+          leftText={destinationMode}
+          rightText={totalPrice}
         />
         <TravelDestinationBlock
           travelDirection={'DEPARTURE'}
-          departureLocation={'New York'}
-          departureAirport={'JFK'}
-          arrivalLocation={'Los Angeles'}
-          arrivalAirport={'LAX'}
+          departureLocation={departLocation}
+          departureAirport={departAirportCode}
+          arrivalLocation={arriveLocation}
+          arrivalAirport={arriveAirportCode}
         />
         <TouchableOpacity onPress={this.handleTouch.bind(this)}>
           <FlightInfo
-            departTime={'09:00PM'}
-            arrivalTime={'12:19 AM'}
+            airlineImage={{ uri: 'https://api-cdn.pavolar.com/1/images/logos/airlines.png?airline=' + airlineCode1 }}
+            departTime={departTime1}
+            arrivalTime={arriveTime1}
             flightPathType={'direct'}
             flightDuration={'6h 13min'}
           />
@@ -36,33 +57,9 @@ class SearchResults extends Component {
         <Separator />
         <TouchableOpacity onPress={this.handleTouch.bind(this)}>
           <FlightInfo
-            departTime={'10:30PM'}
-            arrivalTime={'01:43 AM'}
-            flightPathType={'direct'}
-            flightDuration={'6h 13min'}
-          />
-        </TouchableOpacity>
-
-        <TravelDestinationBlock
-          travelDirection={'RETURN'}
-          departureLocation={'New York'}
-          departureAirport={'JFK'}
-          arrivalLocation={'Los Angeles'}
-          arrivalAirport={'LAX'}
-        />
-        <TouchableOpacity onPress={this.handleTouch.bind(this)}>
-          <FlightInfo
-            departTime={'09:00PM'}
-            arrivalTime={'12:19 AM'}
-            flightPathType={'direct'}
-            flightDuration={'6h 13min'}
-          />
-        </TouchableOpacity>
-        <Separator />
-        <TouchableOpacity onPress={this.handleTouch.bind(this)}>
-          <FlightInfo
-            departTime={'10:30PM'}
-            arrivalTime={'01:43 AM'}
+            airlineImage={{ uri: 'https://api-cdn.pavolar.com/1/images/logos/airlines.png?airline=' + airlineCode2 }}
+            departTime={departTime2}
+            arrivalTime={arriveTime2}
             flightPathType={'direct'}
             flightDuration={'6h 13min'}
           />

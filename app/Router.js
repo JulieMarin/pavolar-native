@@ -23,7 +23,7 @@ const RouterComponent = () => {
           key='mainPage'
           component={MainPage}
           title={Title}
-          initial
+          // initial
         />
         {/* SEARCH RESULTS */}
         <Scene
@@ -32,7 +32,7 @@ const RouterComponent = () => {
           key='bookingSearchResults'
           renderTitle={SearchResultTitle}
           component={AvailableFlights}
-          // initial
+          initial
         />
 
         <Scene

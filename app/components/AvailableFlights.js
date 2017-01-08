@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { connect } from 'react-redux';
+import { View, StyleSheet, Text, ScrollView, ListView } from 'react-native';
 import Drawer from 'react-native-drawer';
 import ResultHeader from './ResultHeader';
 import TravelDestinationBlock from './TravelDestinationBlock';
@@ -10,20 +11,33 @@ import SearchResults from './SearchResults';
 import FilterMenu from './FilterMenu';
 
 class AvailableFlights extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      drawerOpen: false
+  renderRow(result) {
+    const destinationMode = () => {
+      return (
+        result.combinations[0].flightChoices.length == 1 ? 'One Way' : 'Round Trip'
+      )
     }
-  }
-
-  drawerToggle() {
-    this.setState({
-      drawerOpen: !this.drawerOpen
-    });
+    return(
+      <SearchResults
+        destinationMode={destinationMode()}
+        totalPrice={result.pricing.total}
+        airlineCode1={result.combinations[0].flightChoices[0].flightDetails[0].carrier.marketingCarrier}
+        airlineCode2={result.combinations[0].flightChoices[1].flightDetails[0].carrier.marketingCarrier}
+        departAirportCode={result.combinations[0].flightChoices[0].flightDetails[0].location[0].locationId}
+        arriveAirportCode={result.combinations[0].flightChoices[1].flightDetails[0].location[0].locationId}
+        departLocation={this.props.depart}
+        arriveLocation={this.props.destination}
+        departTime1={result.combinations[0].flightChoices[0].flightDetails[0].dateTime.departureTime}
+      />
+    );
   }
 
   render() {
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    });
+    const dataSource = ds.cloneWithRows(this.props.allResults);
+
     return (
       <Drawer
         type = "overlay"
@@ -31,13 +45,16 @@ class AvailableFlights extends Component {
         side = 'right'
         tapToClose = {true}
         openDrawerOffset = {75}
-        open = {this.state.drawerOpen}
+        open = {false}
         panCloseMask={0.3}
       >
         <ScrollView style={{ flex: 1, backgroundColor: '#fafafa' }}>
           <View style={styles.container}>
-              <SearchResults />
-              <SearchResults />
+            <ListView
+              enableEmptySections={true}
+              dataSource={dataSource}
+              renderRow={(data) => this.renderRow(data)}
+            />
           </View>
         </ScrollView>
       </Drawer>
@@ -55,4 +72,24 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AvailableFlights;
+const mapStateToProps = ({ booking, searchParameters }) => {
+  const {
+    allResults
+  } = booking.bFlights.results;
+
+  const {
+    depart,
+    destination
+  } = searchParameters.flights.request.params
+
+  return {
+    allResults,
+    depart,
+    destination
+  };
+};
+
+export default connect(
+  mapStateToProps,
+null
+)(AvailableFlights);

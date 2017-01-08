@@ -1,16 +1,20 @@
 import { Actions } from 'react-native-router-flux';
-import { requestPackager } from '../../services';
+import { requestPackager, recommendationsPackager } from '../../services';
 import { PavolarAPI } from '../../services/modules';
 import {
   TOGGLE_SEARCH_MODAL,
   TOGGLE_FLIGHTS_SEARCH_LOADING,
   PUSH_ALL_RESULTS,
+  REFORMAT_RESULTS,
+  ROUND_TRIP_ACTIVE
 } from '../types';
 
 export const packageParams = (flights) => {
   const {
     airportDepartCode,
     airportReturnCode,
+    airportDepartLocation,
+    airportReturnLocation
   } = flights.locationPreferences;
 
   const {
@@ -34,7 +38,7 @@ export const packageParams = (flights) => {
     adults: adultCount,
     children: childCount,
     infantCount: infantCount,
-    maxRecommendations: 100,
+    maxRecommendations: 200,
     segments: destinationMode == 'OneWay' ? 1 : 2,
     departCode1: airportDepartCode,
     departDate1: departDate.toLocaleDateString(),
@@ -42,7 +46,7 @@ export const packageParams = (flights) => {
     departCode2: airportReturnCode,
     departDate2: returnDate.toLocaleDateString(),
     destinationCode2: airportDepartCode,
-    nonStopFlight: searchDirectFlightsOnly
+    nonStopFlight: 0
   }
 
   return (dispatch) => {
@@ -51,23 +55,24 @@ export const packageParams = (flights) => {
     PavolarAPI.getSearchResults(requestPackager(params))
       .then((response) => {
         if (response.data.success) {
-          Actions.bookingSearchResults();
+          dispatch({
+            type: ROUND_TRIP_ACTIVE,
+            payload: {
+              depart: airportDepartCode,
+              destination: airportReturnCode
+            }
+          });
           dispatch({
             type: PUSH_ALL_RESULTS,
-            payload: response.data.response
-          })
+            payload: response.data.response.results
+          });
+          Actions.bookingSearchResults();
           dispatch({ type: TOGGLE_SEARCH_MODAL });
           dispatch({ type: TOGGLE_FLIGHTS_SEARCH_LOADING });
         } else {
-          dispatch({
-            type: PUSH_ALL_RESULTS,
-            payload: {
-              error: 'Something went wrong.'
-            }
-          })
+          dispatch({ type: REFORMAT_RESULTS })
           dispatch({ type: TOGGLE_FLIGHTS_SEARCH_LOADING });
         }
-        console.log(response);
       })
   }
 }

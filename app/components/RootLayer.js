@@ -63,7 +63,6 @@ class RootLayer extends Component {
       signInOpen,
       searchModalOpen
     } = this.props;
-    console.log(signInOpen);
     return (
         <Drawer
           open={this.state.drawerOpen}

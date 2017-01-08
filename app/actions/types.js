@@ -40,3 +40,4 @@ export const SEARCH_DIRECT_FLIGHTS = 'SEARCH_DIRECT_FLIGHTS';
 
 // Request Definitions
 export const PUSH_ALL_RESULTS = 'PUSH_ALL_RESULTS';
+export const REFORMAT_RESULTS = 'REFORMAT_RESULTS';

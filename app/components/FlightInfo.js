@@ -8,7 +8,7 @@ const FlightInfo = (props) => {
   return (
     <View style={[styles.row, props.style]}>
       <ColumnWrapper alignItems={ props.flexOverride || 'flex-start'} flex={1.25}>
-        <Icon height={15} width={84} source={require('image!AA_logo')} />
+        <Icon height={15} width={84} source={props.airlineImage} />
       </ColumnWrapper>
 
       <ColumnWrapper>
