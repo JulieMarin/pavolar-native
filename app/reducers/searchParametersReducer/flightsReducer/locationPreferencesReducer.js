@@ -4,10 +4,10 @@ import {
 } from '../../../actions/types';
 
 const INITIAL_STATE = {
-  airportDepartCode: '',
-  airportReturnCode: '',
-  airportDepartLocation: '',
-  airportReturnLocation: '',
+  airportDepartCode: 'JFK',
+  airportReturnCode: 'SAL',
+  airportDepartLocation: 'New York',
+  airportReturnLocation: 'San Salvador',
 };
 
 export default (state = INITIAL_STATE, action) => {

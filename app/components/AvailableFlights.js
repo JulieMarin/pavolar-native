@@ -9,6 +9,7 @@ import ColumnWrapper from './ColumnWrapper';
 import Separator from './Separator';
 import SearchResults from './SearchResults';
 import FilterMenu from './FilterMenu';
+import { extractDateTimes } from '../services';
 
 class AvailableFlights extends Component {
   renderRow(result) {
@@ -17,6 +18,13 @@ class AvailableFlights extends Component {
         result.combinations[0].flightChoices.length == 1 ? 'One Way' : 'Round Trip'
       )
     }
+    const firstArrivalListingTime = (flightChoices) => {
+      if (flightChoices.flightDetails.length < 2) {
+        return flightChoices.flightDetails[0].dateTime.arrivalTime
+      } else {
+        return flightChoices.flightDetails[1].dateTime.arrivalTime
+      }
+    };
     return(
       <SearchResults
         destinationMode={destinationMode()}
@@ -28,15 +36,19 @@ class AvailableFlights extends Component {
         departLocation={this.props.depart}
         arriveLocation={this.props.destination}
         departTime1={result.combinations[0].flightChoices[0].flightDetails[0].dateTime.departureTime}
+        arriveTime1={firstArrivalListingTime(result.combinations[0].flightChoices[0])}
+        departTime2={result.combinations[0].flightChoices[1].flightDetails[0].dateTime.departureTime}
+        arriveTime2={firstArrivalListingTime(result.combinations[0].flightChoices[1])}
       />
     );
   }
 
   render() {
+    console.log(extractDateTimes(this.props.allResults.recommendations[0].combinations[0].flightChoices[0].flightDetails))
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
-    const dataSource = ds.cloneWithRows(this.props.allResults);
+    const dataSource = ds.cloneWithRows(this.props.allResults.recommendations);
 
     return (
       <Drawer

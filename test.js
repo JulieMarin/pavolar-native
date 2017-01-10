@@ -1,4 +1,5 @@
-export const dummyData = [
+export const dummyData = {
+  recommendations: [
     {
       itemNumber: '1',
       combinations: [
@@ -3016,3 +3017,4 @@ export const dummyData = [
       }
     }
   ]
+}

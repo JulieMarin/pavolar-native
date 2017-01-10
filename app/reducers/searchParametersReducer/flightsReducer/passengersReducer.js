@@ -27,7 +27,7 @@ export default (state = INITIAL_STATE, action) => {
       if (state.adultCount < 7) {
         return {
           ...state,
-          adultCount: ++state.adultCount
+          adultCount: state.adultCount + 1
         }
       }
       return state;
@@ -39,7 +39,7 @@ export default (state = INITIAL_STATE, action) => {
       if (state.childCount > 0) {
         return {
           ...state,
-          childCount: --state.childCount
+          childCount: state.childCount - 1
         }
       } else {
         return state;
@@ -50,7 +50,7 @@ export default (state = INITIAL_STATE, action) => {
       if (state.infantCount > 0) {
         return {
           ...state,
-          infantCount: --state.infantCount
+          infantCount: state.infantCount - 1
         }
       } else {
         return state;
@@ -72,7 +72,7 @@ const adultCountConditionals = (state) => {
   else if (state.adultCount > 0) {
       return {
         ...state,
-        adultCount: --state.adultCount
+        adultCount: state.adultCount - 1
       }
   }
   return state;
@@ -82,7 +82,7 @@ const childCountConditionals = (state) => {
   if (state.childCount < 6 && state.adultCount >= 1) {
     return {
       ...state,
-      childCount: ++state.childCount
+      childCount: state.childCount + 1
     }
   } else if (state.childCount == 6) {
       return state;
@@ -98,7 +98,7 @@ const infantCountConditionals = (state) => {
   if (state.infantCount < 6 && state.adultCount >= 1) {
     return {
       ...state,
-      infantCount: ++state.infantCount
+      infantCount: state.infantCount + 1
     }
   } else if (state.infantCount == 6) {
     return state;

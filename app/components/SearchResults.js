@@ -11,6 +11,14 @@ class SearchResults extends Component {
     Actions.BookingStepOne();
   }
 
+  airlinePlaceholder(code) {
+    if (code == '9k') {
+        return { uri: 'https://api-cdn.pavolar.com/1/images/logos/airlines.png' }
+    } else {
+        return { uri: 'https://api-cdn.pavolar.com/1/images/logos/airlines.png?airline=' + code }
+    }
+  }
+
   render() {
     const {
       destinationMode,
@@ -47,7 +55,7 @@ class SearchResults extends Component {
         />
         <TouchableOpacity onPress={this.handleTouch.bind(this)}>
           <FlightInfo
-            airlineImage={{ uri: 'https://api-cdn.pavolar.com/1/images/logos/airlines.png?airline=' + airlineCode1 }}
+            airlineImage={this.airlinePlaceholder(airlineCode1)}
             departTime={departTime1}
             arrivalTime={arriveTime1}
             flightPathType={'direct'}
@@ -57,7 +65,7 @@ class SearchResults extends Component {
         <Separator />
         <TouchableOpacity onPress={this.handleTouch.bind(this)}>
           <FlightInfo
-            airlineImage={{ uri: 'https://api-cdn.pavolar.com/1/images/logos/airlines.png?airline=' + airlineCode2 }}
+            airlineImage={this.airlinePlaceholder(airlineCode2)}
             departTime={departTime2}
             arrivalTime={arriveTime2}
             flightPathType={'direct'}

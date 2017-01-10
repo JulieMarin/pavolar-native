@@ -4,3 +4,4 @@ export * from './authenticateUser';
 export * from './nonceGenerator';
 export * from './regEx';
 export * from './recommendationsPackager';
+export * from './getFlightDuration';

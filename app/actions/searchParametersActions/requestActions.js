@@ -58,8 +58,8 @@ export const packageParams = (flights) => {
           dispatch({
             type: ROUND_TRIP_ACTIVE,
             payload: {
-              depart: airportDepartCode,
-              destination: airportReturnCode
+              depart: airportDepartLocation,
+              destination: airportReturnLocation
             }
           });
           dispatch({
