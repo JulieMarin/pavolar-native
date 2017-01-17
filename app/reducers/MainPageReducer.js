@@ -60,7 +60,7 @@ const INITIAL_STATE = Map({
     infantCount: 0,
   },
   flightPreferences: {
-    destinationMode: 'RoundTrip',
+    destinationMode: 'Round Trip',
     searchByAirline: false,
     searchDirectFlightsOnly: false,
   },

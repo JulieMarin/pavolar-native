@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { StyleSheet, Text, View } from 'react-native';
 import MainPage from './components/MainPage';
@@ -12,119 +13,121 @@ import BookingStepThree from './components/BookingStepThree';
 import BookingStepFour from './components/BookingStepFour';
 import BookingStepFive from './components/BookingStepFive';
 import Confirmation from './components/Confirmation';
+import { toggleFilterModal } from './actions';
 
-const RouterComponent = () => {
-  return (
-    <Router navigationBarStyle={styles.header}>
-      <Scene key={'root'}>
-        {/* MAIN PAGE */}
-        <Scene
-          sceneStyle={styles.container}
-          key='mainPage'
-          component={MainPage}
-          title={Title}
-          // initial
-        />
-        {/* SEARCH RESULTS */}
-        <Scene
-          renderRightButton={FilterConfig}
-          sceneStyle={styles.container}
-          key='bookingSearchResults'
-          renderTitle={SearchResultTitle}
-          component={AvailableFlights}
-          initial
-        />
+class RouterComponent extends Component {
+  render(){
+    const { toggleFilterModal } = this.props;
+    return (
+      <Router navigationBarStyle={styles.header}>
+        <Scene key={'root'}>
+          {/* MAIN PAGE */}
+          <Scene
+            sceneStyle={styles.container}
+            key='mainPage'
+            component={MainPage}
+            title={Title}
+            initial
+          />
+          {/* SEARCH RESULTS */}
+          <Scene
+            sceneStyle={styles.container}
+            key='bookingSearchResults'
+            component={AvailableFlights}
+            // initial
+          />
 
-        <Scene
-          renderRightButton={
-            () =>
-            <View style={{ alignItems: 'center' }}>
-              <Text style={styles.price}>$880</Text>
-              <Text style={styles.subText}>Round Trip</Text>
-            </View>
-          }
-          backTitle={'Cancel'}
-          backButtonTextStyle={styles.backButton}
-          sceneStyle={styles.container}
-          key='BookingStepOne'
-          component={BookingStepOne}
-          title={'Choose'}
-          titleStyle={styles.headerFont}
-        />
+          <Scene
+            renderRightButton={
+              () =>
+              <View style={{ alignItems: 'center' }}>
+                <Text style={styles.price}>$880</Text>
+                <Text style={styles.subText}>Round Trip</Text>
+              </View>
+            }
+            backTitle={'Cancel'}
+            backButtonTextStyle={styles.backButton}
+            sceneStyle={styles.container}
+            key='BookingStepOne'
+            component={BookingStepOne}
+            title={'Choose'}
+            titleStyle={styles.headerFont}
+          />
 
-        <Scene
-          renderRightButton={
-            () =>
-            <View style={{ alignItems: 'center' }}>
-              <Text style={styles.price}>$880</Text>
-              <Text style={styles.subText}>Round Trip</Text>
-            </View>
-          }
-          navigationBarStyle={styles.headerNoShadow}
-          sceneStyle={styles.container}
-          key='BookingStepTwo'
-          title={'Choosing options'}
-          component={BookingStepTwo}
-          titleStyle={styles.headerFont}
-        />
+          <Scene
+            renderRightButton={
+              () =>
+              <View style={{ alignItems: 'center' }}>
+                <Text style={styles.price}>$880</Text>
+                <Text style={styles.subText}>Round Trip</Text>
+              </View>
+            }
+            navigationBarStyle={styles.headerNoShadow}
+            sceneStyle={styles.container}
+            key='BookingStepTwo'
+            title={'Choosing options'}
+            component={BookingStepTwo}
+            titleStyle={styles.headerFont}
+          />
 
-        <Scene
-          navigationBarStyle={styles.headerNoShadow}
-          sceneStyle={styles.container}
-          key='BookingStepThree'
-          title={'Your flight details'}
-          component={BookingStepThree}
-          titleStyle={styles.headerFont}
-          // initial
-        />
+          <Scene
+            navigationBarStyle={styles.headerNoShadow}
+            sceneStyle={styles.container}
+            key='BookingStepThree'
+            title={'Your flight details'}
+            component={BookingStepThree}
+            titleStyle={styles.headerFont}
+            // initial
+          />
 
-        <Scene
-          backTitle={'Cancel'}
-          navigationBarStyle={styles.headerBlue}
-          sceneStyle={styles.container}
-          key='BookingStepFour'
-          title={'Traveller info'}
-          component={BookingStepFour}
-          titleStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
-          backButtonTextStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
-          hideBackImage={true}
-          onRight={() => Actions.BookingStepFive()}
-          rightTitle="Next"
-          rightButtonTextStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
-          // initial
-        />
+          <Scene
+            backTitle={'Cancel'}
+            navigationBarStyle={styles.headerBlue}
+            sceneStyle={styles.container}
+            key='BookingStepFour'
+            title={'Traveller info'}
+            component={BookingStepFour}
+            titleStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
+            backButtonTextStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
+            hideBackImage={true}
+            onRight={() => Actions.BookingStepFive()}
+            rightTitle="Next"
+            rightButtonTextStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
+            // initial
+          />
 
-        <Scene
-          backTitle={'Back'}
-          navigationBarStyle={styles.headerBlue}
-          sceneStyle={styles.container}
-          key='BookingStepFive'
-          title={'Payment'}
-          component={BookingStepFive}
-          titleStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
-          backButtonTextStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
-          hideBackImage={true}
-          rightTitle={'Pay'}
-          rightButtonTextStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
-          onRight={() => Actions.confirmation()}
-        />
-        <Scene
-          direction={'vertical'}
-          backTitle={'Close'}
-          navigationBarStyle={styles.headerBlue}
-          sceneStyle={styles.container}
-          key='confirmation'
-          title={'Confirmation'}
-          component={Confirmation}
-          titleStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
-          backButtonTextStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
-          hideBackImage={true}
-          rightButtonStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
-        />
-      </Scene>
-    </Router>
-  );
-};
+          <Scene
+            backTitle={'Back'}
+            navigationBarStyle={styles.headerBlue}
+            sceneStyle={styles.container}
+            key='BookingStepFive'
+            title={'Payment'}
+            component={BookingStepFive}
+            titleStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
+            backButtonTextStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
+            hideBackImage={true}
+            rightTitle={'Pay'}
+            rightButtonTextStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
+            onRight={() => Actions.confirmation()}
+          />
+          <Scene
+            direction={'vertical'}
+            backTitle={'Close'}
+            navigationBarStyle={styles.headerBlue}
+            sceneStyle={styles.container}
+            key='confirmation'
+            title={'Confirmation'}
+            component={Confirmation}
+            titleStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
+            backButtonTextStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
+            hideBackImage={true}
+            rightButtonStyle={[styles.headerFont, { color: '#ffffff', fontWeight: '600' }]}
+          />
+        </Scene>
+      </Router>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   header: {
@@ -181,4 +184,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export default RouterComponent;
+export default connect(
+  null,
+  {
+    toggleFilterModal
+  }
+)(RouterComponent);

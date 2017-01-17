@@ -5,7 +5,7 @@ import {
 } from '../../../actions/types';
 
 const INITIAL_STATE = {
-  destinationMode: 'RoundTrip',
+  destinationMode: 'Round Trip',
   searchByAirline: false,
   searchDirectFlightsOnly: false,
 };
@@ -16,7 +16,7 @@ export default (state = INITIAL_STATE, action) => {
       if (action.payload == 'OneWay') {
         return { ...state, destinationMode: 'OneWay'}
       } else {
-        return { ...state, destinationMode: 'RoundTrip'}
+        return { ...state, destinationMode: 'Round Trip'}
       }
     case SEARCH_BY_AIRLINE:
       return {

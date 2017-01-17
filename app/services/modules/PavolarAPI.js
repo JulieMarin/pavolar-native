@@ -8,13 +8,13 @@ class APIRouter {
   getAuthenticate(params) {
     return axios.get(this.rootURI + '/1/user/authenticate/account.json', {
       params: params
-    })
+    });
   }
 
   getSearchResults(params) {
     return axios.get(this.rootURI + '/1/flights/search/search.json', {
       params: params
-    })
+    });
   }
 
   searchAirports(query) {
@@ -22,7 +22,11 @@ class APIRouter {
       params: {
         query: query
       }
-    })
+    });
+  }
+
+  getAirlinesList() {
+    return axios.get('https://api-cdn.pavolar.com/1/info/details/airlines.json?airline=');
   }
 
 }

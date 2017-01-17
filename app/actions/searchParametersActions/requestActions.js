@@ -1,4 +1,5 @@
 import { Actions } from 'react-native-router-flux';
+import { extractAvailableFlights } from '../../services/availableFlights';
 import { requestPackager, recommendationsPackager } from '../../services';
 import { PavolarAPI } from '../../services/modules';
 import {
@@ -64,7 +65,10 @@ export const packageParams = (flights) => {
           });
           dispatch({
             type: PUSH_ALL_RESULTS,
-            payload: response.data.response.results
+            payload: {
+              ...response.data.response.results,
+              recommendations: extractAvailableFlights(response.data.response.results.recommendations)
+            }
           });
           Actions.bookingSearchResults();
           dispatch({ type: TOGGLE_SEARCH_MODAL });
@@ -76,3 +80,8 @@ export const packageParams = (flights) => {
       })
   }
 }
+
+// {
+//   ...response.data.response.results,
+//   recommendations: extractAvailableFlights(response.data.response.results.recommendations)
+// }

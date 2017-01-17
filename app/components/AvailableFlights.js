@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { View, StyleSheet, Text, ScrollView, ListView } from 'react-native';
 import Drawer from 'react-native-drawer';
@@ -9,46 +10,56 @@ import ColumnWrapper from './ColumnWrapper';
 import Separator from './Separator';
 import SearchResults from './SearchResults';
 import FilterMenu from './FilterMenu';
-import { extractDateTimes } from '../services';
+import FilterConfig from './FilterConfig';
+import SearchResultTitle from './SearchResultTitle';
+import {
+  extractTravelInfo,
+  filterFlightsByStops
+ } from '../services';
+import { toggleFilterModal } from '../actions';
+import {
+  extractAvailableFlights,
+  renderRoundTrip
+ } from '../services/availableFlights';
 
 class AvailableFlights extends Component {
-  renderRow(result) {
-    const destinationMode = () => {
-      return (
-        result.combinations[0].flightChoices.length == 1 ? 'One Way' : 'Round Trip'
-      )
-    }
-    const firstArrivalListingTime = (flightChoices) => {
-      if (flightChoices.flightDetails.length < 2) {
-        return flightChoices.flightDetails[0].dateTime.arrivalTime
-      } else {
-        return flightChoices.flightDetails[1].dateTime.arrivalTime
+  componentDidMount() {
+    const {
+      airportDepartLocation,
+      airportReturnLocation,
+      departDate,
+      returnDate,
+      toggleFilterModal
+    } = this.props;
+    Actions.refresh({
+      renderRightButton: () => {
+        return (
+          <FilterConfig
+            toggleFilterModal={toggleFilterModal.bind(this)}
+          />
+        );
+      },
+      renderTitle: SearchResultTitle,
+      titleProps: {
+        airportDepartLocation,
+        airportReturnLocation,
+        departDate,
+        returnDate
       }
-    };
-    return(
-      <SearchResults
-        destinationMode={destinationMode()}
-        totalPrice={result.pricing.total}
-        airlineCode1={result.combinations[0].flightChoices[0].flightDetails[0].carrier.marketingCarrier}
-        airlineCode2={result.combinations[0].flightChoices[1].flightDetails[0].carrier.marketingCarrier}
-        departAirportCode={result.combinations[0].flightChoices[0].flightDetails[0].location[0].locationId}
-        arriveAirportCode={result.combinations[0].flightChoices[1].flightDetails[0].location[0].locationId}
-        departLocation={this.props.depart}
-        arriveLocation={this.props.destination}
-        departTime1={result.combinations[0].flightChoices[0].flightDetails[0].dateTime.departureTime}
-        arriveTime1={firstArrivalListingTime(result.combinations[0].flightChoices[0])}
-        departTime2={result.combinations[0].flightChoices[1].flightDetails[0].dateTime.departureTime}
-        arriveTime2={firstArrivalListingTime(result.combinations[0].flightChoices[1])}
-      />
-    );
+    });
+  }
+
+  renderRow(data) {
+    return renderRoundTrip(data, this.props);
   }
 
   render() {
-    console.log(extractDateTimes(this.props.allResults.recommendations[0].combinations[0].flightChoices[0].flightDetails))
+    // filterFlightsByStops(this.props.allResults.recommendations, 1);
+
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
-    const dataSource = ds.cloneWithRows(this.props.allResults.recommendations);
+    const dataSource = ds.cloneWithRows(filterFlightsByStops(this.props.allResults.recommendations, 1000));
 
     return (
       <Drawer
@@ -77,7 +88,7 @@ class AvailableFlights extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fafafa',
+    backgroundColor: '#4a55b2',
     borderColor: '#f5f2f2',
     paddingTop: 8,
     paddingBottom: 20,
@@ -90,18 +101,41 @@ const mapStateToProps = ({ booking, searchParameters }) => {
   } = booking.bFlights.results;
 
   const {
+    destinationMode
+  } = searchParameters.flights.travelPreferences;
+
+  const {
+    departDate,
+    returnDate
+  } = searchParameters.flights.datePreferences;
+
+  const {
+    airportDepartCode,
+    airportReturnCode,
+    airportDepartLocation,
+    airportReturnLocation,
+  } = searchParameters.flights.locationPreferences;
+
+  const {
     depart,
     destination
-  } = searchParameters.flights.request.params
+  } = searchParameters.flights.request.params;
 
   return {
     allResults,
     depart,
-    destination
+    destination,
+    airportDepartCode,
+    airportReturnCode,
+    airportDepartLocation,
+    airportReturnLocation,
+    destinationMode,
+    departDate,
+    returnDate
   };
 };
 
 export default connect(
   mapStateToProps,
-null
+  { toggleFilterModal }
 )(AvailableFlights);

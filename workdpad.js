@@ -1,22 +1,80 @@
-// const convertTime = (timeString, dateString, gmt = '-5') => {
-//   let hour = timeString.substring(0, 2);
-//   let minutes = timeString.substring(2, 4);
-//   let day = dateString.substring(0, 2);
-//   let month = dateString.substring(2, 4,)
-//   let year = new Date.getFullYear().toString();
-//   let packagedDateTime = new Date('01 03 2017 10:00:00 GMT-5')
-//   return packagedDateTime
-// };
+import base64 from 'base-64';
 
-import moment from 'moment';
+export const extractAvailableFlights = (results) => {
+  let total = lolololol(results);
+  return total.map((recommendation) => {
+     const mergedCombinations = mergeDuplicateCombinations(recommendation.combinations);
+    return {
+      ...recommendation,
+      combinations: mergedCombinations
+    }
+  });
+};
 
+const mergeDuplicateCombinations = (combinations) => {
+  let uniqueCombinations = [];
+  // let something = removeDuplicateSegments(combinations);
+  let combinedList = combinations.filter((combo) => {
+    let hash = generateHashFromCombo(combo);
 
-const getDuration = () => {
-  // get the current time so we know which offset to take (DST is such bullkitten)
-  var now = moment.utc();
-  // get the zone offsets for this time, in minutes
-  var NewYork_tz_offset = moment.tz.zone("America/New_York").offset(now);
-  var HongKong_tz_offset = moment.tz.zone("Asia/Hong_Kong").offset(now);
-  // calculate the difference in hours
-  console.log((NewYork_tz_offset - HongKong_tz_offset) / 60);
-}
+    if (uniqueCombinations.includes(hash)) {
+      return;
+    } else {
+      uniqueCombinations.push(hash);
+      return combo;
+    }
+  });
+  // console.log(uniqueCombinations);
+  return combinedList;
+};
+
+const generateHashFromCombo = (combo) => {
+  debugger;
+  let object = combo.flightChoices[0].flightDetails;
+  let stringified = JSON.stringify(object).toString();
+  return base64.encode(stringified);
+};
+
+const generateHashFromChoice = (choice) => {
+  let stringified = JSON.stringify(choice).toString();
+  return base64.encode(stringified);
+};
+
+const removeDuplicateSegments = (results) => {
+  return results.map((recommendation) => {
+    let uniqueSegments = [];
+    return recommendation.combinations.map((combo) => {
+      return combo.flightChoices.filter((choice) => {
+        let hashedChoice = generateHashFromChoice(choice);
+        if (uniqueSegments.includes(hashedChoice)) {
+          return;
+        } else {
+          uniqueSegments.push(hashedChoice);
+          return choice;
+        }
+      })
+    });
+  });
+};
+
+const lolololol = (results) => {
+
+  return results.map((recommendation) => {
+    let array2 = recommendation.combinations.map((combo) => {
+      let uniqueSegments = [];
+      return array = combo.flightChoices.filter((choice) => {
+        let hashedChoice = generateHashFromChoice(choice);
+        if (uniqueSegments.includes(hashedChoice)) {
+          return;
+        } else {
+          uniqueSegments.push(hashedChoice);
+          return choice;
+        }
+      })
+    })
+    return {
+      ...recommendation,
+      combinations: array2
+    }
+  });
+};

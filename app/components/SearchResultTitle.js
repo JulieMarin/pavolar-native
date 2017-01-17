@@ -1,11 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const SearchResultTitle = (props) => {
+const SearchResultTitle = ({titleProps}) => {
+  const {
+    airportDepartLocation,
+    airportReturnLocation,
+    departDate,
+    returnDate
+  } = titleProps;
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>New York - Los Angeles International</Text>
-      <Text style={styles.textLight}>OCT 20 - OCT 25</Text>
+      <Text style={styles.text}>{airportDepartLocation + ' - ' + airportReturnLocation}</Text>
+      <Text style={styles.textLight}>{departDate.toLocaleDateString() + ' - ' + returnDate.toLocaleDateString()}</Text>
     </View>
   );
 };

@@ -42,3 +42,6 @@ export const SEARCH_DIRECT_FLIGHTS = 'SEARCH_DIRECT_FLIGHTS';
 export const ROUND_TRIP_ACTIVE = 'ROUND_TRIP_ACTIVE';
 export const PUSH_ALL_RESULTS = 'PUSH_ALL_RESULTS';
 export const REFORMAT_RESULTS = 'REFORMAT_RESULTS';
+
+// Flight Booking Selection Definitions
+export const TOGGLE_FILTER_MODAL = 'TOGGLE_FILTER_MODAL';

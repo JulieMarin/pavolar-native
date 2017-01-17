@@ -61,7 +61,8 @@ class RootLayer extends Component {
       departDate,
       returnDate,
       signInOpen,
-      searchModalOpen
+      searchModalOpen,
+      filterModalOpen
     } = this.props;
     return (
         <Drawer
@@ -121,7 +122,7 @@ class RootLayer extends Component {
 
         <Modal
           style={styles.dateModal}
-          isOpen={false}
+          isOpen={filterModalOpen}
           position={"top"}
           entry={'top'}
           animationDuration={600}
@@ -181,7 +182,11 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ auth, searchParameters }) => {
+const mapStateToProps = ({ auth, searchParameters, booking }) => {
+  const {
+    filterModalOpen
+  } = booking.bFlights.selection
+
   const {
     email,
     password,
@@ -217,7 +222,8 @@ const mapStateToProps = ({ auth, searchParameters }) => {
     departDate,
     returnDate,
     signInOpen,
-    searchModalOpen
+    searchModalOpen,
+    filterModalOpen
   };
 };
 

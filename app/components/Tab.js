@@ -26,7 +26,7 @@ const Tab = (props) => {
   return (
     <View style={container}>
       <Button
-        onPress={() => props.action('RoundTrip')}
+        onPress={() => props.action('Round Trip')}
         text={'ROUND TRIP'}
         backgroundColor={'#0172fc'}
         width={170}

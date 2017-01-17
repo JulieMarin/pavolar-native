@@ -38,7 +38,11 @@ class SearchResults extends Component {
       airlineCode1,
       airlineCode2,
       airlineCode3,
-      airlineCode4
+      airlineCode4,
+      firstDeparture,
+      secondDeparture,
+      firstReturn,
+      secondReturn
     } = this.props;
     return (
       <View style={styles.container}>
@@ -53,25 +57,19 @@ class SearchResults extends Component {
           arrivalLocation={arriveLocation}
           arrivalAirport={arriveAirportCode}
         />
-        <TouchableOpacity onPress={this.handleTouch.bind(this)}>
-          <FlightInfo
-            airlineImage={this.airlinePlaceholder(airlineCode1)}
-            departTime={departTime1}
-            arrivalTime={arriveTime1}
-            flightPathType={'direct'}
-            flightDuration={'6h 13min'}
-          />
-        </TouchableOpacity>
+          {firstDeparture}
         <Separator />
-        <TouchableOpacity onPress={this.handleTouch.bind(this)}>
-          <FlightInfo
-            airlineImage={this.airlinePlaceholder(airlineCode2)}
-            departTime={departTime2}
-            arrivalTime={arriveTime2}
-            flightPathType={'direct'}
-            flightDuration={'6h 13min'}
-          />
-        </TouchableOpacity>
+          {secondDeparture}
+        <TravelDestinationBlock
+          travelDirection={'RETURN'}
+          departureLocation={arriveLocation}
+          departureAirport={arriveAirportCode}
+          arrivalLocation={departLocation}
+          arrivalAirport={departAirportCode}
+        />
+          {firstReturn}
+        <Separator />
+          {secondReturn}
       </View>
     );
   }
