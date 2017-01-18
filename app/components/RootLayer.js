@@ -121,7 +121,7 @@ class RootLayer extends Component {
         </Modal>
 
         <Modal
-          style={styles.dateModal}
+          style={styles.filterModal}
           isOpen={filterModalOpen}
           position={"top"}
           entry={'top'}
@@ -171,6 +171,15 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1.5,
     borderColor: 'rgb(221, 221, 221)'
   },
+  filterModal: {
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    height: 330,
+    paddingTop: 30,
+    paddingBottom: 10,
+    borderBottomWidth: 1.5,
+    borderColor: 'rgb(221, 221, 221)'
+  },
   filterMenu: {
     alignItems: 'center',
     alignSelf: 'stretch',
@@ -185,7 +194,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = ({ auth, searchParameters, booking }) => {
   const {
     filterModalOpen
-  } = booking.bFlights.selection
+  } = booking.bFlights.filter
 
   const {
     email,

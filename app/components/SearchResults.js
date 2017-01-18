@@ -42,7 +42,8 @@ class SearchResults extends Component {
       firstDeparture,
       secondDeparture,
       firstReturn,
-      secondReturn
+      secondReturn,
+      showAllOptions 
     } = this.props;
     return (
       <View style={styles.container}>
@@ -58,7 +59,9 @@ class SearchResults extends Component {
           arrivalAirport={arriveAirportCode}
         />
           {firstDeparture}
-        <Separator />
+        <TouchableOpacity onPress={() => showAllOptions()}>
+          <Separator />
+        </TouchableOpacity>
           {secondDeparture}
         <TravelDestinationBlock
           travelDirection={'RETURN'}
@@ -68,7 +71,9 @@ class SearchResults extends Component {
           arrivalAirport={departAirportCode}
         />
           {firstReturn}
-        <Separator />
+        <TouchableOpacity onPress={() => showAllOptions()}>
+          <Separator />
+        </TouchableOpacity>
           {secondReturn}
       </View>
     );

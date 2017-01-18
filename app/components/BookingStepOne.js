@@ -1,103 +1,75 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { renderOptions } from '../services';
 import FlightInfo from './FlightInfo';
+import PriceWidget from './PriceWidget';
 import BookingTravelHeader from './BookingTravelHeader';
 
 class BookingStepOne extends Component {
+  componentDidMount() {
+    const { data, headerInfo } = this.props;
+    Actions.refresh({
+      renderRightButton: () => {
+        return (
+          <PriceWidget
+            price={data.pricing.total}
+            destinationMode={headerInfo.destinationMode}
+          />
+        )
+      }
+    });
+  }
+
   handleTouch() {
     Actions.BookingStepTwo();
   }
 
   render() {
+    const {
+      data,
+      headerInfo,
+    } = this.props;
+
+    const {
+      airportDepartCode,
+      airportReturnCode,
+      airportDepartLocation,
+      airportReturnLocation,
+      destinationMode,
+      departDate,
+      returnDate,
+    } = headerInfo;
+
     return (
       <ScrollView style={{ flex: 1 }}>
         <View style={styles.container}>
           <BookingTravelHeader
             travelDirection={'DEPARTURE'}
-            departureLocation={'New York'}
-            departureAirport={'JFK'}
-            arrivalLocation={'Los Angeles'}
-            arrivalAirport={'LAX'}
-            date={'Sun, 20 Oct 2016'}
+            departureLocation={airportDepartLocation}
+            departureAirport={airportDepartCode}
+            arrivalLocation={airportReturnLocation}
+            arrivalAirport={airportReturnCode}
+            date={departDate.toLocaleDateString()}
           />
-          <TouchableOpacity onPress={this.handleTouch.bind(this)}>
-            <FlightInfo
-              style={styles.slat}
-              flexOverride={'center'}
-              departTime={'09:00PM'}
-              arrivalTime={'12:19 AM'}
-              flightPathType={'direct'}
-              flightDuration={'6h 13min'}
-            />
-          </TouchableOpacity>
-          <FlightInfo
-            style={styles.slat}
-            flexOverride={'center'}
-            departTime={'09:00PM'}
-            arrivalTime={'12:19 AM'}
-            flightPathType={'direct'}
-            flightDuration={'6h 13min'}
-          />
-          <FlightInfo
-            style={styles.slat}
-            flexOverride={'center'}
-            departTime={'09:00PM'}
-            arrivalTime={'12:19 AM'}
-            flightPathType={'direct'}
-            flightDuration={'6h 13min'}
-          />
-          <FlightInfo
-            style={styles.slat}
-            flexOverride={'center'}
-            departTime={'09:00PM'}
-            arrivalTime={'12:19 AM'}
-            flightPathType={'direct'}
-            flightDuration={'6h 13min'}
-          />
+          {renderOptions(
+            data.availableFlights.outgoingFlights,
+            data.pricing,
+            destinationMode,
+            data
+          )}
         </View>
 
         <View style={styles.container}>
           <BookingTravelHeader
             travelDirection={'RETURN'}
-            departureLocation={'New York'}
-            departureAirport={'JFK'}
-            arrivalLocation={'Los Angeles'}
-            arrivalAirport={'LAX'}
-            date={'Sun, 20 Oct 2016'}
+            departureLocation={airportReturnLocation}
+            departureAirport={airportReturnCode}
+            arrivalLocation={airportDepartLocation}
+            arrivalAirport={airportDepartCode}
+            date={returnDate.toLocaleDateString()}
           />
-          <FlightInfo
-            style={styles.slat}
-            flexOverride={'center'}
-            departTime={'09:00PM'}
-            arrivalTime={'12:19 AM'}
-            flightPathType={'direct'}
-            flightDuration={'6h 13min'}
-          />
-          <FlightInfo
-            style={styles.slat}
-            flexOverride={'center'}
-            departTime={'09:00PM'}
-            arrivalTime={'12:19 AM'}
-            flightPathType={'direct'}
-            flightDuration={'6h 13min'}
-          />
-          <FlightInfo
-            style={styles.slat}
-            flexOverride={'center'}
-            departTime={'09:00PM'}
-            arrivalTime={'12:19 AM'}
-            flightPathType={'direct'}
-            flightDuration={'6h 13min'}
-          />
-          <FlightInfo
-            style={styles.slat}
-            flexOverride={'center'}
-            departTime={'09:00PM'}
-            arrivalTime={'12:19 AM'}
-            flightPathType={'direct'}
-            flightDuration={'6h 13min'}
-          />
+          {renderOptions(data.availableFlights.returningFlights)}
         </View>
       </ScrollView>
     );
@@ -106,7 +78,6 @@ class BookingStepOne extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     paddingTop: 8,
     backgroundColor: '#fafafa',
     borderColor: '#f5f2f2',

@@ -55,13 +55,6 @@ class RouterComponent extends Component {
           />
 
           <Scene
-            renderRightButton={
-              () =>
-              <View style={{ alignItems: 'center' }}>
-                <Text style={styles.price}>$880</Text>
-                <Text style={styles.subText}>Round Trip</Text>
-              </View>
-            }
             navigationBarStyle={styles.headerNoShadow}
             sceneStyle={styles.container}
             key='BookingStepTwo'

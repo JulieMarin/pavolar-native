@@ -52,7 +52,6 @@
     "eslint-plugin-react": "^6.7.1",
     "jest": "16.0.1",
     "jest-react-native": "16.0.0",
-    "react-native-debugger-open": "^0.3.2",
     "react-test-renderer": "15.3.2",
     "redux-immutable-state-invariant": "^1.2.4",
     "remote-redux-devtools": "^0.5.5"

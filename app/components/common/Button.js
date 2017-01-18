@@ -8,14 +8,15 @@ const Button = ({
     borderColor,
     borderWidth,
     width,
-    underlayColor
+    underlayColor,
+    style
 }) => {
   const { buttonStyle, textStyle } = styles;
 
   return (
     <TouchableHighlight
       onPress={onPress}
-      style={[buttonStyle, { backgroundColor, borderColor, borderWidth, width }]}
+      style={[buttonStyle, { backgroundColor, borderColor, borderWidth, width }, style]}
       underlayColor={underlayColor}
     >
       <Text style={textStyle}>

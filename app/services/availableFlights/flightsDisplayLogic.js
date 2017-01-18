@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import FlightInfo from '../../components/FlightInfo';
 import SearchResults from '../../components/SearchResults';
 import CustomText from '../../components/CustomText';
@@ -14,8 +15,25 @@ export const renderRoundTrip = (data, props) => {
     airportReturnCode,
     airportDepartLocation,
     airportReturnLocation,
-    destinationMode
+    destinationMode,
+    departDate,
+    returnDate,
   } = props;
+
+  const showAllOptions = (data,props) => {
+    Actions.BookingStepOne({
+      data,
+      headerInfo: {
+        airportDepartCode,
+        airportReturnCode,
+        airportDepartLocation,
+        airportReturnLocation,
+        destinationMode,
+        departDate,
+        returnDate,
+      }
+    })
+  };
 
   return (
     <SearchResults
@@ -29,6 +47,7 @@ export const renderRoundTrip = (data, props) => {
       secondDeparture={extrapolateDetails(data.availableFlights.outgoingFlights, 1, true)}
       firstReturn={extrapolateDetails(data.availableFlights.returningFlights, 0)}
       secondReturn={extrapolateDetails(data.availableFlights.returningFlights, 1, true)}
+      showAllOptions={showAllOptions.bind(this, data, props)}
     />
   )
 };
@@ -69,3 +88,49 @@ const checkSegmentCount = (segments) => {
     return 'Direct'
   }
 };
+
+export const renderOptions = (flights, pricing, destinationMode, data) => {
+  return flights.map((flight, index) => {
+    let departDateTime = flight[0].dateTime;
+    let arriveDateTime = flight.slice(-1)[0].dateTime
+    return (
+      <TouchableOpacity
+        key={index}
+        onPress={() => Actions.BookingStepTwo({
+          flightInfo: flight,
+          otherInfo: pricing,
+          data,
+          destinationMode,
+        })}
+        >
+        <FlightInfo
+          style={styles.slat}
+          departTime={formatTime(departDateTime.departureTime)}
+          arrivalTime={formatTime(arriveDateTime.arrivalTime)}
+          airlineImage={getAirlineImage(flight[0].carrier.marketingCarrier)}
+          flightDuration={'FIX IT, ALI'}
+          flightPathType={checkSegmentCount(flight)}
+        />
+      </TouchableOpacity>
+    )
+  })
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 8,
+    backgroundColor: '#fafafa',
+    borderColor: '#f5f2f2',
+    paddingBottom: 30,
+  },
+  slat: {
+    paddingLeft: 8,
+    paddingTop: 18,
+    paddingBottom: 4,
+    backgroundColor: '#ffffff',
+    borderColor: '#f4f4f4',
+    borderTopWidth: 0.5,
+    borderBottomWidth: 0.5,
+  },
+});

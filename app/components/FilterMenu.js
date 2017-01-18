@@ -1,58 +1,39 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, StyleSheet } from 'react-native';
-import { RowLayout, ColumnLayout } from './common';
+import { RowLayout, ColumnLayout, Button } from './common';
 import CustomText from './CustomText';
 import Checkbox from './Checkbox';
+import {
+  checkFilterOption,
+  toggleFilterModal,
+  submitFilterOptions,
+} from '../actions';
 
 class FilterMenu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      noPreference: false,
-      directFlights: false,
-      oneStop: false,
-      twoStop: false,
-      checked: false
-    };
+  onSubmit() {
+    const {
+      toggleFilterModal,
+      submitFilterOptions,
+      selectedOption,
+      allResults
+    } = this.props;
+    submitFilterOptions(selectedOption, allResults);
+    toggleFilterModal(false);
   }
-
-  noPreferenceSwitch() {
-    if (this.state.checked === false) {
-      this.setState({
-        noPreference: !this.state.noPreference,
-        checked: true
-      })
-    }
-  }
-  directFlightsSwitch() {
-    if (this.state.checked === false) {
-      this.setState({
-        directFlights: !this.state.directFlights,
-        checked: true
-      })
-    }
-  }
-
-  oneStopSwitch() {
-    if (this.state.checked === false) {
-      this.setState({
-        oneStop: !this.state.oneStop,
-        checked: true
-      })
-    }
-  }
-
-  twoStopSwitch() {
-    if (this.state.checked === false) {
-      this.setState({
-        twoStop: !this.state.twoStop,
-        checked: true
-      })
-    }
-  }
-
 
   render() {
+    const {
+      noPreference,
+      directOnly,
+      filterByOneStop,
+      filterByTwoStops,
+      filterModalOpen,
+      checkFilterOption,
+      selectedOption,
+      submitFilterOptions,
+      allResults
+    } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -60,23 +41,46 @@ class FilterMenu extends Component {
         </View>
 
         <View style={styles.row}>
-          <Checkbox checked={this.state.noPreference} handleEvent={this.noPreferenceSwitch.bind(this)} />
+          <Checkbox
+            checked={noPreference}
+            handleEvent={checkFilterOption.bind(this, 'noPreference')}
+          />
           <CustomText>No preference</CustomText>
         </View>
 
         <View style={styles.row}>
-          <Checkbox checked={this.state.directFlights} handleEvent={this.directFlightsSwitch.bind(this)} />
+          <Checkbox
+            onPress={() => { console.log('lol') }}
+            checked={directOnly}
+            handleEvent={checkFilterOption.bind(this, 'directOnly')}
+          />
           <CustomText>Direct flights only</CustomText>
         </View>
 
         <View style={styles.row}>
-          <Checkbox checked={this.state.oneStop} handleEvent={this.oneStopSwitch.bind(this)} />
+          <Checkbox
+            checked={filterByOneStop}
+            handleEvent={checkFilterOption.bind(this, 'filterByOneStop')}
+          />
           <CustomText>Up to 1 stop</CustomText>
         </View>
 
         <View style={styles.row}>
-          <Checkbox checked={this.state.twoStop} handleEvent={this.twoStopSwitch.bind(this)} />
+          <Checkbox
+            checked={filterByTwoStops}
+            handleEvent={checkFilterOption.bind(this, 'filterByTwoStops')}
+          />
           <CustomText>Up to 2 stops</CustomText>
+        </View>
+        <View style={styles.button}>
+          <Button
+            style={{ borderRadius: 4 }}
+            onPress={this.onSubmit.bind(this)}
+            text={'SUBMIT'}
+            backgroundColor={'#0172fc'}
+            width={120}
+            underlayColor={'#6aadff'}
+          />
         </View>
       </View>
     );
@@ -104,6 +108,42 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     marginBottom: 15
   },
+  button: {
+    paddingTop: 20,
+    alignSelf: 'center'
+  }
 });
 
-export default FilterMenu;
+const mapStateToProps = ({ booking }) => {
+  const {
+    allResults
+  } = booking.bFlights.results;
+
+  const {
+    noPreference,
+    directOnly,
+    filterByOneStop,
+    filterByTwoStops,
+    filterModalOpen,
+    selectedOption,
+  } = booking.bFlights.filter;
+
+  return {
+    noPreference,
+    directOnly,
+    filterByOneStop,
+    filterByTwoStops,
+    filterModalOpen,
+    selectedOption,
+    allResults
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {
+    checkFilterOption,
+    submitFilterOptions,
+    toggleFilterModal
+  }
+)(FilterMenu);

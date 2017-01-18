@@ -1,33 +1,18 @@
+// import { } from '../../services';
 // import {
-//   SWAP_DATES,
-//   TOGGLE_DEPART_DATE_MODAL,
-//   TOGGLE_RETURN_DATE_MODAL,
-//   UPDATE_DATE_FIELD
+//   TOGGLE_FILTER_MODAL,
+//   SUBMIT_FILTER_OPTIONS,
+//   SET_ACTIVE_FILTERED_RESULTS,
 // } from '../types';
 //
-// export const swapDates = () => {
-//   return { type: SWAP_DATES }
-// };
-//
-// export const updateDateField = ({prop, value}) => {
-//   return {
-//     type: UPDATE_DATE_FIELD,
-//     payload: {
-//       prop, value
+// export const submitFilterOptions = (option) => {
+//   switch (option) {
+//   case 'directOnly':
+//     return {
+//       type: SET_ACTIVE_FILTERED_RESULTS,
+//       payload: option
 //     }
-//   }
-// };
+//   default:
 //
-// export const toggleDepartDateModal = (selection) => {
-//   return {
-//     type: TOGGLE_DEPART_DATE_MODAL,
-//     payload: selection
-//   }
-// }
-//
-// export const toggleReturnDateModal = (selection) => {
-//   return {
-//     type: TOGGLE_RETURN_DATE_MODAL,
-//     payload: selection
 //   }
 // }

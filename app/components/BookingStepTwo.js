@@ -3,13 +3,32 @@ import { View, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-nati
 import { Actions } from 'react-native-router-flux';
 import FlightInfo from './FlightInfo';
 import BookingTravelHeader from './BookingTravelHeader';
+import PriceWidget from './PriceWidget';
+import { renderOptions } from '../services';
 
 class BookingStepTwo extends Component {
+  componentDidMount() {
+    const { flightInfo, otherInfo } = this.props;
+    Actions.refresh({
+      renderRightButton: () => {
+        return (
+          <PriceWidget
+            price={otherInfo.total}
+            destinationMode={otherInfo.destinationMode}
+          />
+        )
+      }
+    });
+  }
+
   handleTouch() {
     Actions.BookingStepThree();
   }
 
   render() {
+    const {
+      flightInfo
+    } = this.props;
     return (
       <View style={styles.container}>
         <View
@@ -33,7 +52,7 @@ class BookingStepTwo extends Component {
           <FlightInfo
             style={[styles.slat, { marginTop: 0 }]}
             flexOverride={'center'}
-            departTime={'09:00PM'}
+            departTime={flightInfo[0].dateTime.departureTime}
             arrivalTime={'12:19 AM'}
             flightPathType={'direct'}
             flightDuration={'6h 13min'}

@@ -14,7 +14,8 @@ import FilterConfig from './FilterConfig';
 import SearchResultTitle from './SearchResultTitle';
 import {
   extractTravelInfo,
-  filterFlightsByStops
+  filterFlightsByStops,
+  filterByAirline
  } from '../services';
 import { toggleFilterModal } from '../actions';
 import {
@@ -29,7 +30,7 @@ class AvailableFlights extends Component {
       airportReturnLocation,
       departDate,
       returnDate,
-      toggleFilterModal
+      toggleFilterModal,
     } = this.props;
     Actions.refresh({
       renderRightButton: () => {
@@ -54,12 +55,12 @@ class AvailableFlights extends Component {
   }
 
   render() {
-    // filterFlightsByStops(this.props.allResults.recommendations, 1);
+    const { activeFilteredResults } = this.props;
 
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
-    const dataSource = ds.cloneWithRows(filterFlightsByStops(this.props.allResults.recommendations, 1000));
+    const dataSource = ds.cloneWithRows(activeFilteredResults.recommendations);
 
     return (
       <Drawer
@@ -97,7 +98,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({ booking, searchParameters }) => {
   const {
-    allResults
+    allResults,
+    activeFilteredResults
   } = booking.bFlights.results;
 
   const {
@@ -131,7 +133,8 @@ const mapStateToProps = ({ booking, searchParameters }) => {
     airportReturnLocation,
     destinationMode,
     departDate,
-    returnDate
+    returnDate,
+    activeFilteredResults
   };
 };
 
