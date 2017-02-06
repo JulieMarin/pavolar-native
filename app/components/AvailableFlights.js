@@ -17,7 +17,11 @@ import {
   filterFlightsByStops,
   filterByAirline
  } from '../services';
-import { toggleFilterModal } from '../actions';
+import {
+  toggleFilterModal,
+  chooseFlightOption,
+  expandFlightOptions
+} from '../actions';
 import {
   extractAvailableFlights,
   renderRoundTrip
@@ -140,5 +144,9 @@ const mapStateToProps = ({ booking, searchParameters }) => {
 
 export default connect(
   mapStateToProps,
-  { toggleFilterModal }
+  {
+    toggleFilterModal,
+    chooseFlightOption,
+    expandFlightOptions
+  }
 )(AvailableFlights);

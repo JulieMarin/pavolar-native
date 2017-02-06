@@ -20,19 +20,20 @@ export const renderRoundTrip = (data, props) => {
     returnDate,
   } = props;
 
-  const showAllOptions = (data,props) => {
-    Actions.BookingStepOne({
-      data,
-      headerInfo: {
-        airportDepartCode,
-        airportReturnCode,
-        airportDepartLocation,
-        airportReturnLocation,
-        destinationMode,
-        departDate,
-        returnDate,
-      }
-    })
+  const showAllOptions = (data, props) => {
+    debugger;
+    const sharedInfo = {
+      airportDepartCode,
+      airportReturnCode,
+      airportDepartLocation,
+      airportReturnLocation,
+      destinationMode,
+      departDate,
+      returnDate,
+    };
+
+    props.expandFlightOptions(sharedInfo, data);
+    Actions.BookingStepOne();
   };
 
   return (

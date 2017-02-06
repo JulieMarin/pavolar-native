@@ -8,6 +8,7 @@ import BookingTravelHeader from './BookingTravelHeader';
 
 class BookingStepOne extends Component {
   componentDidMount() {
+    debugger;
     const { data, headerInfo } = this.props;
     Actions.refresh({
       renderRightButton: () => {
@@ -26,6 +27,7 @@ class BookingStepOne extends Component {
   }
 
   render() {
+
     const {
       data,
       headerInfo,

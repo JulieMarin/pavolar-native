@@ -45,6 +45,8 @@ export const REFORMAT_RESULTS = 'REFORMAT_RESULTS';
 
 // Flight Booking Selection Definitions
 export const SUBMIT_FILTER_OPTIONS = 'SUBMIT_FILTER_OPTIONS';
+export const CHOOSE_FLIGHT = 'CHOOSE_FLIGHT';
+export const SET_EXPANDED_OPTIONS = 'SET_EXPANDED_OPTIONS';
 
 // Flight Booking Filter Definitions
 export const TOGGLE_FILTER_MODAL = 'TOGGLE_FILTER_MODAL';

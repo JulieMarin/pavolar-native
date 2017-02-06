@@ -40,7 +40,16 @@ const extractUniqueFlights = (combinations, segmentNumber) => {
 
 const sortByFlghtTime = (flights) => {
   return flights.sort((time1, time2) => {
-    return formatAndGetTime(time1[0].dateTime.departureTime) - formatAndGetTime(time2[0].dateTime.departureTime)
+    let time1DateTime = formatAndGetTime(time1[0].dateTime.departureTime);
+    let time1DateTimeAlt = formatAndGetTime(time1.slice(-1)[0].dateTime.arrivalTime);
+    let time2DateTime = formatAndGetTime(time2[0].dateTime.departureTime);
+    let time2DateTimeAlt = formatAndGetTime(time2.slice(-1)[0].dateTime.arrivalTime);
+    if (time1DateTime == time2DateTime) {
+      return time1DateTimeAlt - time2DateTimeAlt;
+    } else {
+      return time1DateTime - time2DateTime;
+    }
+    // return formatAndGetTime(time1[0].dateTime.departureTime) - formatAndGetTime(time2[0].dateTime.departureTime)
   })
 };
 
